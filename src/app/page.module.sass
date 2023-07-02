@@ -22,10 +22,26 @@
 
 .input
   @include variables.btn(1rem, false, true)
+  @include variables.focusStyle(variables.$secondary)
   background: variables.$primary-shadow
   box-shadow: 2px 2px 5px variables.$shadow
-  @include variables.focusStyle(variables.$secondary)
 
+.radio
+  display: flex
+  align-items: center
+  input[type="radio"]
+    width: 1rem
+    height: 1rem
+    margin-inline: 0.5rem
+    cursor: pointer 
+    &:not(:checked)
+      position: relative
+      @include variables.radioBefore(-2px, -2px, 1rem, 1rem)    
+    &:checked
+      position: relative
+      @include variables.radioBefore(-2px, -2px, 1rem, 1rem)
+      @include variables.radioAfter(2px, 2px, 0.5rem, 0.5rem)
+        
 .inputBtn
   @include variables.btn(1.2rem, false, false)
   margin-top: 40px
@@ -52,9 +68,97 @@
   gap: 2rem
   color: variables.$secondary
 
+.checkLabel
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  color: variables.$secondary
+
+.checkbox
+  display: flexbox
+  justify-content: center
+  width: 1rem
+  height: 1rem
+  margin-inline: 0.5rem
+  cursor: pointer  
+
+#basePage
+  display: flex
+  overflow-x: hidden 
+  flex-direction: column
+#content
+  display: flex
+  gap: 3rem
+//NavBar
+.profile
+  position: relative
+  display: flex
+  color: variables.$primary
+  gap: 1rem
+  & .picture
+    width: 73px
+    height: 73px
+    border-radius: 50%
+    overflow: hidden
+  & .online
+    position: absolute
+    width: 0.8rem
+    height: 0.8rem
+    background: variables.$online
+    border-radius: 50%
+    top: 80%
+    left: 20%
+
+.nav
+  display: flex
+  width: 100vw
+  justify-content: space-between
+  align-items: center
+  padding-inline: 4rem
+  padding-block: 1rem 
+  background: variables.$secondary
+//------------------------------
+
+
+.categories
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: center
+  padding: 1rem
+  background: variables.$primary-shadow
+  width: 25vw
+  min-height: calc(100vh - 100px)
+  & .optionsMenu
+    display: flex
+    justify-content: space-between
+    gap: 1rem
+    color: variables.$btnPrimary
+    & .selection
+      display: flex
+      flex-direction: column
+      align-items: center
+      position: relative
+      & p 
+        text-align: center
+        top: 50%
+  & .divider
+    margin-top: 1rem
+    background: variables.$secondary
+    width: 80%
+    height: 2px
+    border-radius: 10px
+
+  
+
+.mainPage
+
+  
+
+
 @media ( max-width:850px )
   .aside
     width: 0px
   .rightScreen
     width: 100vw
-  
+

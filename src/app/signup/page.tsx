@@ -1,8 +1,18 @@
+'use client'
+
 import Image from 'next/image'
 import styles from '../page.module.sass'
 import Link from 'next/link';
+import { HTMLInputTypeAttribute, useState } from 'react';
 
 export default function SignIn() {
+
+	const [mostraSenha, setMostraSenha] = useState<HTMLInputTypeAttribute>('password')
+
+	function handleMostrarSenha(e: any) {
+		e.target.checked ? setMostraSenha('text') : setMostraSenha('password');
+	}
+
   return (
 		<main className={styles.main}>
 			<aside className={styles.aside}>
@@ -21,17 +31,36 @@ export default function SignIn() {
 					className={styles.input}
 					type='text'
 				/>
-				<input placeholder='Senha' className={styles.input} type='text' />
+				<input
+					placeholder='Senha'
+					className={styles.input}
+					type={mostraSenha}
+				/>
 				<input
 					placeholder='Repetir senha'
 					className={styles.input}
-					type='text'
+					type={mostraSenha}
 				/>
+				<label className={styles.checkLabel}>
+					Mostrar senha
+					<input 
+						className={styles.checkbox} 
+						type='checkbox' 
+						onChange={(event) => handleMostrarSenha(event)} 
+					/>
+				</label>
+
 				<div className={styles.checkerContainer}>
-					<label className={styles.radio} htmlFor='userType'><input name='userType' type='radio' /> Usuário</label>
-					<label className={styles.radio} htmlFor='userType'><input name='userType' type='radio' /> Admin</label>
+					<label className={styles.radio} htmlFor='userType'>
+						<input id='userType' className={styles.checkers} name='userType' type='radio' />
+						Usuário
+					</label>
+					<label className={styles.radio} htmlFor='userType'>
+						<input className={styles.checkers} name='userType' type='radio' />
+						Admin
+					</label>
 				</div>
-				
+
 				<button className={styles.inputBtn} type='button'>
 					Criar conta
 				</button>

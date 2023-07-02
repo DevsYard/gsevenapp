@@ -30,6 +30,30 @@
     outline-width: 10px
     filter: brightness(0.9)
 
+@mixin radioBefore($top, $left, $w, $h)
+  &::before
+    content: ''
+    position: absolute
+    top: $top
+    left: $left
+    border: 2px solid $secondary
+    background: $primary
+    border-radius: 50%
+    width: $w
+    height: $h
+
+@mixin radioAfter($top, $left, $w, $h)
+  &::after
+    content: ''
+    position: absolute
+    top: $top
+    left: $left
+    border: 2px solid $primary
+    background: $secondary
+    border-radius: 50%
+    width: $w
+    height: $h
+
 
 $secondary: #41AEB5
 $primary: #D9D9D9
@@ -38,3 +62,5 @@ $shadow: #777
 
 $googleRed: #B83D2F
 $facebookBlue: #3B5998
+$btnPrimary: #41AEB5
+$online: #6ee949
