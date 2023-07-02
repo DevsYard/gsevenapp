@@ -1,0 +1,40 @@
+@mixin centerBlocks
+  width: 50vw
+  height: 100vh
+  display: grid
+  place-content: center
+
+@mixin btn($f, $social, $input)
+  @if($social == true)
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    align-items: center
+  @else 
+    display: block
+  padding: 0.6rem 1rem
+  min-width: 18rem
+  border-radius: 5px
+  border: none
+  font-size: $f
+  cursor: pointer
+  &:hover
+    filter: brightness(0.9)
+  @if($input != true)
+    &:active
+      box-shadow: inset 3px 3px 10px #242424
+
+@mixin focusStyle($color)
+  &:focus-visible
+    outline-color: $color
+    outline-width: 10px
+    filter: brightness(0.9)
+
+
+$secondary: #41AEB5
+$primary: #D9D9D9
+$primary-shadow: #D1D1D1
+$shadow: #777
+
+$googleRed: #B83D2F
+$facebookBlue: #3B5998

@@ -1,0 +1,60 @@
+@use 'variables'
+
+.main
+  display: flex
+  
+.aside
+  @include variables.centerBlocks
+  background: variables.$secondary
+
+.rightScreen
+  @include variables.centerBlocks
+  gap: 1rem
+  background: variables.$primary
+  & p
+    text-align: center
+    & .link
+      text-decoration: none
+      color: variables.$secondary
+      &:hover
+        filter: brightness(0.9)
+        cursor: pointer
+
+.input
+  @include variables.btn(1rem, false, true)
+  background: variables.$primary-shadow
+  box-shadow: 2px 2px 5px variables.$shadow
+  @include variables.focusStyle(variables.$secondary)
+
+.inputBtn
+  @include variables.btn(1.2rem, false, false)
+  margin-top: 40px
+  background: variables.$secondary
+  color: variables.$primary-shadow
+  @include variables.focusStyle(variables.$shadow)
+
+.inputGoogle
+  @include variables.btn(1rem, true, false)
+  background: variables.$googleRed
+  color: variables.$primary-shadow
+  @include variables.focusStyle(variables.$secondary)
+  
+.inputFacebook
+  @include variables.btn(1rem, true, false)
+  background: variables.$facebookBlue
+  color: variables.$primary-shadow
+  @include variables.focusStyle(variables.$secondary)
+
+.checkerContainer
+  display: flex
+  padding-inline: 2rem
+  justify-content: space-between
+  gap: 2rem
+  color: variables.$secondary
+
+@media ( max-width:850px )
+  .aside
+    width: 0px
+  .rightScreen
+    width: 100vw
+  
