@@ -54,7 +54,38 @@
     width: $w
     height: $h
 
+@mixin functionBtn($selected)
+  position: absolute
+  text-align: center
+  cursor: pointer
+  color: #41AEB5
+  @if($selected == 'nameAnimationOff')
+    animate: 600ms nameAnimationOff ease-in
+    bottom: -1.2rem
+    opacity: 1
+  @else
+    animate: 600ms nameAnimationIn ease-in
+    opacity: 0
 
+
+@keyframes nameAnimationOff
+  0%
+    opacity: 0
+    bottom: 0
+  100%
+    opacity: 1
+    bottom: -1.2
+  
+  
+@keyframes nameAnimationIn
+  0%
+    opacity: 1
+    bottom: -1.2
+  100%
+    opacity: 0
+    bottom: 0
+  
+  
 $secondary: #41AEB5
 $primary: #D9D9D9
 $primary-shadow: #D1D1D1

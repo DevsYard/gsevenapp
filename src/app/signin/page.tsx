@@ -1,10 +1,24 @@
+'use client'
+
 import Image from 'next/image'
 import styles from '../page.module.sass'
-import Link from 'next/link';
+import Link from 'next/link'
+import { useState } from 'react'
 
 export default function SignIn() {
+
+	const [mostraSenha, setMostraSenha] = useState<string>('password')
+	
+	function handleLogin() {
+		
+	}
+
+	function handleMostrarSenha(e: any) {
+		e.target.checked ? setMostraSenha('text') : setMostraSenha('password')
+	}
+
   return (
-		<main className={styles.main}>
+		<main className={styles.mainLogin}>
 			<aside className={styles.aside}>
 				<Image
 					src='/Logo.svg'
@@ -21,9 +35,20 @@ export default function SignIn() {
 					className={styles.input}
 					type='text'
 				/>
-				<input placeholder='Senha' className={styles.input} type='text' />
-
-				<button className={styles.inputBtn} type='button'>
+				<input 
+					placeholder='Senha' 
+					className={styles.input} 
+					type={mostraSenha} 
+				/>
+				<label className={styles.checkLabel}>
+					Mostrar senha
+					<input
+						className={styles.checkbox}
+						type='checkbox'
+						onChange={(event) => handleMostrarSenha(event)}
+					/>
+				</label>
+				<button className={styles.inputBtn} onClick={() => handleLogin} type='button'>
 					Logar
 				</button>
 				<button className={styles.inputGoogle} type='button'>
@@ -47,9 +72,11 @@ export default function SignIn() {
 					Logar com Facebook
 				</button>
 				<p>
-					<Link className={styles.link} href="/signup">Ou crie seu cadastro</Link>
+					<Link className={styles.link} href='/signup'>
+						Ou crie seu cadastro
+					</Link>
 				</p>
 			</form>
 		</main>
-	);
+	)
 }
