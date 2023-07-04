@@ -14,7 +14,7 @@ export default function SignIn() {
 	}
 
   return (
-		<main className={styles.main}>
+		<main className={styles.mainLogin}>
 			<aside className={styles.aside}>
 				<Image
 					src='/Logo.svg'
@@ -43,16 +43,21 @@ export default function SignIn() {
 				/>
 				<label className={styles.checkLabel}>
 					Mostrar senha
-					<input 
-						className={styles.checkbox} 
-						type='checkbox' 
-						onChange={(event) => handleMostrarSenha(event)} 
+					<input
+						className={styles.checkbox}
+						type='checkbox'
+						onChange={(event) => handleMostrarSenha(event)}
 					/>
 				</label>
 
 				<div className={styles.checkerContainer}>
 					<label className={styles.radio} htmlFor='userType'>
-						<input id='userType' className={styles.checkers} name='userType' type='radio' />
+						<input
+							id='userType'
+							className={styles.checkers}
+							name='userType'
+							type='radio'
+						/>
 						Usuário
 					</label>
 					<label className={styles.radio} htmlFor='userType'>

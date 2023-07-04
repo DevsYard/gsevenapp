@@ -1,0 +1,73 @@
+[
+  {
+    "Cães": [
+      "ração",
+      "brinquedo",
+      "banho & tosa",
+      "limpeza",
+      "farmácia",
+      "estadia",
+      "cuidados",
+      "snacks"
+    ]
+  },
+  {
+    "Gatos": [
+      "ração",
+      "brinquedo",
+      "banho & tosa",
+      "limpeza",
+      "farmácia",
+      "estadia",
+      "cuidados",
+      "snacks"
+    ]
+  },
+  {
+    "Peixes": [
+      "ração",
+      "brinquedo",
+      "banho & tosa",
+      "limpeza",
+      "farmácia",
+      "estadia",
+      "cuidados",
+      "snacks"
+    ]
+  },
+  {
+    "Exóticos": [
+      "ração",
+      "brinquedo",
+      "banho & tosa",
+      "limpeza",
+      "farmácia",
+      "estadia",
+      "cuidados",
+      "snacks"
+    ]
+  },
+  {
+    "Rações": [
+      "ração",
+      "brinquedo",
+      "banho & tosa",
+      "limpeza",
+      "farmácia",
+      "estadia",
+      "cuidados",
+      "snacks"
+    ]
+  },
+  {
+    "Farmácia": [
+      "remédios",
+      "cuidados"
+    ]
+  },
+  {
+    "Banho&Tosa": [
+      "teste"
+    ]
+  }
+]

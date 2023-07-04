@@ -1,6 +1,6 @@
 @use 'variables'
 
-.main
+.mainLogin
   display: flex
   
 .aside
@@ -86,9 +86,10 @@
   display: flex
   overflow-x: hidden 
   flex-direction: column
+
 #content
   display: flex
-  gap: 3rem
+
 //NavBar
 .profile
   position: relative
@@ -127,33 +128,53 @@
   align-items: center
   padding: 1rem
   background: variables.$primary-shadow
-  width: 25vw
   min-height: calc(100vh - 100px)
   & .optionsMenu
     display: flex
     justify-content: space-between
-    gap: 1rem
+    gap: 2rem
     color: variables.$btnPrimary
+    padding-bottom: 2rem
+    z-index: 10
     & .selection
       display: flex
       flex-direction: column
       align-items: center
       position: relative
-      & p 
-        text-align: center
-        top: 50%
+      & .functionBtnOff
+        @include variables.functionBtn(nameAnimationOff)
+        z-index: 0
+      & .functionBtnIn
+        @include variables.functionBtn(nameAnimationIn)
+        z-index: -1 
+        
+        
   & .divider
     margin-top: 1rem
     background: variables.$secondary
     width: 80%
     height: 2px
     border-radius: 10px
+  & .search
+    position: relative
+    margin: 1rem
+    & .input
+      border-radius: 50px
+      cursor: pointer
+    & .imgSearch
+      position: absolute
+      right: 0.8rem
+      top: 0.3rem
+      cursor: pointer
 
-  
 
 .mainPage
-
+  display: flex
+  flex: 1
+  padding: 2rem
+  background: variables.$primary
   
+
 
 
 @media ( max-width:850px )
