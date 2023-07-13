@@ -175,23 +175,62 @@
       font-weight: 600
       padding-inline: 1rem
       list-style: none
+    ul
+      border-left: solid
+      border-bottom: solid
+      margin-left: 1rem
     li
       list-style: none
     & a
-      padding-left: 2rem
+      padding-left: 0.5rem
       text-decoration: none
-      @include variables.focusStyle(variables.$secondary)        
+      @include variables.focusStyle(variables.$secondary) 
+
+.cardsHeader
+  display: flex
+  width: 100%
+  justify-content: space-between
+  align-items: center
+  h2, h5
+    width: fit-content
+.card
+  display: flex
+  gap: 0.5rem
+  margin-block: 1rem
+  & .itemPic
+    border-radius: 10px
+    box-shadow: 2px 2px 15px variables.$primary-shadow
+  & .boxTexto
+    display: flex
+    flex-direction: column
+  & .buyContainer
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    height: 100%
+  & .btnCompra
+    width: 100%
+    padding-top: 5rem
+    padding: 0.5rem 1rem
+    border-radius: 5px
+    border: none
+    background: variables.$btnPrimary
+    color: variables.$primary
+    border: solid
 
 .mainPage
-  display: flex
-  flex: 1
-  padding: 2rem
+  display: grid
+  width: 100%
+  padding: 1rem 2rem
   background: variables.$primary
-
 
 @media ( max-width:850px )
   .aside
     width: 0px
   .rightScreen
     width: 100vw
+  
+  .nav
+    padding: 1rem
+  
 
