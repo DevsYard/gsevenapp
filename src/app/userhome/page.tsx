@@ -26,12 +26,12 @@ export default function UserHome() {
 
 const Logged = () => {
   return (
-    <div id={styles.basePage}>
-      <Navbar />
-      <div id={styles.content}>
-        <Categories />
-        <Main />
-      </div>
-    </div>
-  )
+		<div id={styles.basePage}>
+			<Navbar />
+			<div id={styles.content}>
+				<Categories />
+				<Main />
+			</div>
+		</div>
+	);
 }

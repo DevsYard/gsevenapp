@@ -147,8 +147,7 @@
       & .functionBtnIn
         @include variables.functionBtn(nameAnimationIn)
         z-index: -1 
-        
-        
+     
   & .divider
     margin-top: 1rem
     background: variables.$secondary
@@ -167,14 +166,27 @@
       top: 0.3rem
       cursor: pointer
 
+  & .listCategories
+    width: 90%
+    margin-inline: 2rem
+    padding-bottom: 5px
+    & .summary
+      @include variables.focusStyle(variables.$secondary)     
+      font-weight: 600
+      padding-inline: 1rem
+      list-style: none
+    li
+      list-style: none
+    & a
+      padding-left: 2rem
+      text-decoration: none
+      @include variables.focusStyle(variables.$secondary)        
 
 .mainPage
   display: flex
   flex: 1
   padding: 2rem
   background: variables.$primary
-  
-
 
 
 @media ( max-width:850px )
