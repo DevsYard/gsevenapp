@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../../page.module.sass'
 import Link from 'next/link'
 import { useState } from 'react'
+import ListaCategorias from '../ListaCategorias'
 
 
 interface Item {
@@ -14,7 +15,6 @@ interface Item {
 
 export default function Categories() {
 
-  
   const [animation, setAnimation] = useState([
     styles.functionBtnOff,
     styles.functionBtnIn,
@@ -99,11 +99,9 @@ export default function Categories() {
   return (
 		<div className={styles.categories}>
 			<nav className={styles.optionsMenu}>
-				<div
-					className={styles.selection}
-          >
+				<div className={styles.selection}>
 					<Image
-  					onClick={(e) => animate(e)}
+						onClick={(e) => animate(e)}
 						src={options[0].img}
 						alt={options[0].alt}
 						width={26}
@@ -112,11 +110,9 @@ export default function Categories() {
 					/>
 					<div className={animation[0]}>{options[0].text}</div>
 				</div>
-				<div
-					className={styles.selection}
-          >
+				<div className={styles.selection}>
 					<Image
-  					onClick={(e) => animate(e)}
+						onClick={(e) => animate(e)}
 						src={options[1].img}
 						alt={options[1].alt}
 						width={26}
@@ -125,11 +121,9 @@ export default function Categories() {
 					/>
 					<div className={animation[1]}>{options[1].text}</div>
 				</div>
-				<div
-					className={styles.selection}
-          >
+				<div className={styles.selection}>
 					<Image
-	  				onClick={(e) => animate(e)}
+						onClick={(e) => animate(e)}
 						src={options[2].img}
 						alt={options[2].alt}
 						width={26}
@@ -138,11 +132,9 @@ export default function Categories() {
 					/>
 					<div className={animation[2]}>{options[2].text}</div>
 				</div>
-				<div
-					className={styles.selection}
-          >
+				<div className={styles.selection}>
 					<Image
-		  			onClick={(e) => animate(e)}
+						onClick={(e) => animate(e)}
 						src={options[3].img}
 						alt={options[3].alt}
 						width={26}
@@ -164,6 +156,8 @@ export default function Categories() {
 					<Image src='/lupa.svg' alt='Busca' width={26} height={26} />
 				</div>
 			</label>
+
+			<ListaCategorias />
 		</div>
 	);
 }
