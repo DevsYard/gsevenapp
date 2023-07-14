@@ -129,6 +129,7 @@
 
 
 .categories
+  position: relative
   display: flex
   flex-direction: column
   justify-content: flex-start
@@ -176,8 +177,7 @@
   & .listCategories
     cursor: pointer
     width: 90%
-    margin-inline: 2rem
-    padding-bottom: 5px
+    
     & .summary
       @include variables.focusStyle(variables.$secondary)     
       font-weight: 600
@@ -193,10 +193,33 @@
           @include variables.focusStyle(variables.$secondary) 
 
 .menuMotion
+  position: absolute
+  top: 10rem
+  left: 0%
   overflow-x: hidden
   display: flex
   align-items: flex-start
-  width: 100%
+  backgound: #949494
+  width: 400%
+  margin-inline: 2rem
+  padding-bottom: 5px                                                                       
+  & .lista, & .chart, & .favorites, & .user
+    width: 25%
+
+.chartContainer
+  display: flex
+  justify-content: space-between
+  & table
+    width: 80%
+    border-bottom: solid 1px
+  & tr
+    width: 100%
+    text-align: center
+  & td
+    text-align: left
+  & .quantTable
+    text-align: center
+
 
 .cardsHeader
   display: flex
@@ -244,6 +267,7 @@
   width: 100%
   padding: 1rem 2rem
   background: variables.$primary
+  z-index: 1000
 
 @media ( max-width:850px )
   .aside
