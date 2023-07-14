@@ -4,10 +4,10 @@ import Link from 'next/link'
 
 export default function ListaCategorias() {
 	return (
-		<>
+		<div className={styles.catList}>
 			<details className={styles.listCategories}>
 				<summary className={styles.summary}>Cães</summary>
-				<ul>
+				<ul className={styles.ul}>
 					<li><a href='/dog_food'>{'ração'}</a></li>
 					<li><a href='/toys'>{'brinquedo'}</a></li>
 					<li><a href='/bath'>{'banho & tosa'}</a></li>
@@ -20,7 +20,7 @@ export default function ListaCategorias() {
 			</details>
 			<details className={styles.listCategories}>
 				<summary className={styles.summary}>Gatos</summary>
-				<ul>
+				<ul className={styles.ul}>
 					<li><a href='/cat_food'>{'ração'}</a></li>
 					<li><a href='#'>{'brinquedo'}</a></li>
 					<li><a href='#'>{'banho & tosa'}</a></li>
@@ -41,6 +41,6 @@ export default function ListaCategorias() {
 				<summary className={styles.summary}>Farmácia</summary><a href='#'>teste</a></details>
 			<details className={styles.listCategories}>
 				<summary className={styles.summary}>Banho & Tosa</summary><a href='#'>teste</a></details>
-		</>
+		</div>
 	);
 }
