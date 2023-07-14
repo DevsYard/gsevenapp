@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { useState } from 'react'
 import ListaCategorias from '../ListaCategorias'
 import Chart from '../Chart'
+import Favorites from '../Favorites'
+import User from '../User'
 
 
 interface Item {
@@ -158,8 +160,18 @@ export default function Categories() {
 				</div>
 			</label>
 			<div className={styles.menuMotion}>
-				<ListaCategorias />
-				<Chart />
+				<div className={styles.lista}>
+					<ListaCategorias />
+				</div>
+				<div className={styles.chart}>
+					<Chart />
+				</div>
+				<div className={styles.favorites}>
+					<Favorites />
+				</div>
+				<div className={styles.user}>
+					<User />
+				</div>
 			</div>
 		</div>
 	);
