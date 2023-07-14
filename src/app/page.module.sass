@@ -109,6 +109,11 @@
     border-radius: 50%
     top: 80%
     left: 20%
+  & .welcome
+    p
+      font-weight: 400
+      font-size: 0.8rem
+      color: variables.$primary
 
 .nav
   display: flex
@@ -118,6 +123,8 @@
   padding-inline: 4rem
   padding-block: 1rem 
   background: variables.$secondary
+  & .hamburguer
+    display: none
 //------------------------------
 
 
@@ -167,24 +174,29 @@
       cursor: pointer
 
   & .listCategories
+    cursor: pointer
     width: 90%
     margin-inline: 2rem
     padding-bottom: 5px
     & .summary
       @include variables.focusStyle(variables.$secondary)     
       font-weight: 600
-      padding-inline: 1rem
       list-style: none
-    ul
+    & .ul
       border-left: solid
       border-bottom: solid
-      margin-left: 1rem
-    li
-      list-style: none
-    & a
-      padding-left: 0.5rem
-      text-decoration: none
-      @include variables.focusStyle(variables.$secondary) 
+      & li
+        list-style: none
+        & a
+          padding-left: 0.5rem
+          text-decoration: none
+          @include variables.focusStyle(variables.$secondary) 
+
+.menuMotion
+  overflow-x: hidden
+  display: flex
+  align-items: flex-start
+  width: 100%
 
 .cardsHeader
   display: flex
@@ -195,28 +207,37 @@
     width: fit-content
 .card
   display: flex
-  gap: 0.5rem
+  gap: 1rem
   margin-block: 1rem
   & .itemPic
     border-radius: 10px
     box-shadow: 2px 2px 15px variables.$primary-shadow
   & .boxTexto
     display: flex
+    gap: 0.5rem
     flex-direction: column
-  & .buyContainer
+  & .btnContainer
+    margin-bottom: 1rem
     display: flex
-    flex-direction: column
-    justify-content: flex-end
-    height: 100%
-  & .btnCompra
-    width: 100%
-    padding-top: 5rem
-    padding: 0.5rem 1rem
+    align-items: center
+    justify-content: space-between
     border-radius: 5px
-    border: none
-    background: variables.$btnPrimary
-    color: variables.$primary
     border: solid
+  & .btnCompra
+    font-size: 1.5rem
+    font-weight: 900
+    padding: 0 0.5rem
+    height: fit-content
+    background: variables.$primary-shadow
+    color: variables.$btnPrimary
+    border: none
+    &:hover
+      filter: brightness(0.9)
+    &:active
+      filter: brightness(0.8)
+  & .quantidade
+    padding: 0 0.5rem
+    
 
 .mainPage
   display: grid
@@ -231,6 +252,37 @@
     width: 100vw
   
   .nav
+    position: relative
     padding: 1rem
+    & .hamburguer
+      display: block
+      position: absolute
+      top: calc(50% - 16px)
+      right: 1.5rem
+  .logo
+    display: none
+  .categories
+    display: none
+  .cardsHeader
+    h2
+      font-size: 1rem
+    h5
+      font-size: 0.8rem
+  .card
+    position: relative
+    display: block
+    margin-block: 0.5rem
+    padding-bottom: 0.5rem
+    border-bottom: solid
+    & .itemPic
+      width: 100px
+      height: 100px
+    & .buyContainer
+      position: absolute
+      top: 0
+      right: 0
+      display: flex
+      flex-direction: column
+      justify-content: flex-start
+      height: 100%
   
-

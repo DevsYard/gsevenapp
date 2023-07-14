@@ -5,6 +5,7 @@ import styles from '../../page.module.sass'
 import Link from 'next/link'
 import { useState } from 'react'
 import ListaCategorias from '../ListaCategorias'
+import Chart from '../Chart'
 
 
 interface Item {
@@ -156,8 +157,10 @@ export default function Categories() {
 					<Image src='/lupa.svg' alt='Busca' width={26} height={26} />
 				</div>
 			</label>
-
-			<ListaCategorias />
+			<div className={styles.menuMotion}>
+				<ListaCategorias />
+				<Chart />
+			</div>
 		</div>
 	);
 }

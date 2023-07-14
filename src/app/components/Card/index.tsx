@@ -1,12 +1,43 @@
+'use client'
+
 import Image from 'next/image'
 import styles from '../../page.module.sass'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+
+
+// interface MouseEvent {
+// 	target: HTMLElement
+// 	clientX: number
+// 	clientY: number
+// 	preventDefault(): void
+// }
 
 export default function Card() {
-  return (
+
+	const [quantidade, setQuantidade] = useState(0)
+	const [price, setPrice] = useState(0)
+	const [unidade, setUnidade] = useState(30.9)
+
+	function handleQuantidade(e: any) {
+		if (e.target.innerHTML === '+') {
+			setQuantidade(quantidade + 1)
+		} else {
+			if (quantidade !== 0) {
+				setQuantidade(quantidade - 1)
+			}
+		}
+	}
+
+	useEffect(() => {
+			setPrice(unidade * quantidade)	
+	}, [quantidade, unidade])
+
+
+	return (
 		<div className={styles.card}>
 			<Image
-        className={styles.itemPic}
+				className={styles.itemPic}
 				src={'/racao.png'}
 				alt='ração 1'
 				width={155}
@@ -22,10 +53,25 @@ export default function Card() {
 					adipisci tempora inventore?
 				</p>
 			</div>
-      <div className={styles.buyContainer}>
-        <button className={styles.btnCompra}>Adicionar</button>
-        <h2>R$30,90</h2>
-      </div>
+			<div className={styles.buyContainer}>
+				<div className={styles.btnContainer}>
+					<button
+						className={styles.btnCompra}
+						onClick={(e) => handleQuantidade(e)}
+					>
+						-
+					</button>
+					<div className={styles.quantidade}>{quantidade}</div>
+					<button
+						className={styles.btnCompra}
+						onClick={(e) => handleQuantidade(e)}
+					>
+						+
+					</button>
+				</div>
+				<h2>R${price.toFixed(2)}</h2>
+				<h3>R${unidade.toFixed(2)}</h3>
+			</div>
 		</div>
-	);
+	)
 }
