@@ -50,10 +50,15 @@ export default function Categories() {
     },
   ]
 
+	const [menuMotion, setMenuMotion] = useState(styles.menuCategories)
+
 
   function animate(e: any) {
     let alt = e.target.alt
+
+
     console.log(e.target)
+		
 
     if(alt === 'categoria') {
       setAnimation([
@@ -63,6 +68,7 @@ export default function Categories() {
 				styles.functionBtnIn,
 			])
       setCards(options[0].alt)
+			setMenuMotion(styles.menuCategories)
     }
     if(alt === 'carrinho') {
       setAnimation([
@@ -72,6 +78,7 @@ export default function Categories() {
 				styles.functionBtnIn,
 			])
       setCards(options[1].alt)
+			setMenuMotion(styles.menuChart);
     }
     if(alt === 'favoritos') {
       setAnimation([
@@ -81,6 +88,7 @@ export default function Categories() {
 				styles.functionBtnIn,
 			])
       setCards(options[2].alt)
+			setMenuMotion(styles.menuFavorites);
     }
     if(alt === 'usuario') {
       setAnimation([
@@ -90,6 +98,7 @@ export default function Categories() {
 				styles.functionBtnOff,
 			])
       setCards(options[3].alt)
+			setMenuMotion(styles.menuUser);
     }
 
     if (pageAnimate === styles.cards) {
@@ -159,7 +168,7 @@ export default function Categories() {
 					<Image src='/lupa.svg' alt='Busca' width={26} height={26} />
 				</div>
 			</label>
-			<div className={styles.menuMotion}>
+			<div id={menuMotion} className={styles.menuMotion}>
 				<div className={styles.lista}>
 					<ListaCategorias />
 				</div>

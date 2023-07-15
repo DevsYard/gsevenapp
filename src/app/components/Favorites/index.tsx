@@ -5,7 +5,7 @@ import Link from 'next/link'
 export default function Favorites() {
   return (
     <div className={styles.favorites}>
-      <h1>Favorites</h1>
+      <h3>Favorites</h3>
     </div>
   )
 }

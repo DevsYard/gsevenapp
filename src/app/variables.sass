@@ -67,6 +67,17 @@
     animate: 600ms nameAnimationIn ease-in
     opacity: 0
 
+@mixin menuMotion($left)
+  position: absolute
+  top: 10rem
+  left: $left
+  overflow-x: hidden
+  display: flex
+  align-items: flex-start
+  width: 400%
+  margin-inline: 2rem
+  padding-bottom: 5px
+
 
 @keyframes nameAnimationOff
   0%
