@@ -18,6 +18,7 @@ export default function Card() {
 	const [quantidade, setQuantidade] = useState(0)
 	const [price, setPrice] = useState(0)
 	const [unidade, setUnidade] = useState(30.9)
+	const [fav, setFav] = useState('/favorites.svg');
 
 	function handleQuantidade(e: any) {
 		if (e.target.innerHTML === '+') {
@@ -26,6 +27,16 @@ export default function Card() {
 			if (quantidade !== 0) {
 				setQuantidade(quantidade - 1)
 			}
+		}
+	}
+
+	function handleFav() {
+		if(fav === '/favorites.svg') {
+			setFav('/heart.svg')
+			// buscar a lista do banco e adicionar o novo
+		} else {
+			setFav('/favorites.svg')
+			// buscar a lista do banco e retirar o atual
 		}
 	}
 
@@ -44,6 +55,9 @@ export default function Card() {
 				height={155}
 				priority
 			/>
+			<div onClick={() => handleFav()} className={styles.heart}>
+				<Image src={fav} alt='Favoritar' width={24} height={24} priority />
+			</div>
 			<div className={styles.boxTexto}>
 				<h3>Nome do produto</h3>
 				<p>
@@ -73,5 +87,5 @@ export default function Card() {
 				<h3>R${unidade.toFixed(2)}</h3>
 			</div>
 		</div>
-	)
+	);
 }
