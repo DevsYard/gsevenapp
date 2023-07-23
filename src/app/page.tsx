@@ -1,11 +1,17 @@
-import Image from 'next/image'
-import styles from './page.module.sass'
-import UserHome from './userhome/page';
+'use client';
+
+import styles from './page.module.sass';
+import SignIn from './signin/page';
+import { useState } from 'react';
+import IsLogged from './contexts/sessionContext';
 
 export default function Home() {
-  return (
-		<main className={styles.main}>
-			<UserHome />
-		</main>
+	const [auth, setAuth] = useState(false);
+	return (
+		<IsLogged.Provider value={{ auth, setAuth }}>
+			<main className={styles.main}>
+				<SignIn />
+			</main>
+		</IsLogged.Provider>
 	);
 }

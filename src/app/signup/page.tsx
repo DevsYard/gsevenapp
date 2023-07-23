@@ -4,7 +4,7 @@ import Image from 'next/image'
 import styles from '../page.module.sass'
 import Link from 'next/link';
 import { HTMLInputTypeAttribute, useState } from 'react';
-import axios from 'axios';
+import requests from '../validations/axios.module';
 
 export default function SignIn() {
 	const [mostraSenha, setMostraSenha] =
@@ -14,11 +14,7 @@ export default function SignIn() {
 	const [repeatPassword, setRepeatPassword] = useState<string>('');
 	const [admin, setAdmin] = useState<boolean>(false);
 	// const [csrfToken, setCsrfToken] = useState<string>('')
-
-	const requests = axios.create({
-		baseURL: 'http://localhost:3001',
-		// timeout: 7000,
-	});
+	const request = requests();
 
 	function handleMostrarSenha(e: any) {
 		e.target.checked ? setMostraSenha('text') : setMostraSenha('password');
@@ -62,7 +58,7 @@ export default function SignIn() {
 			admin: admin,
 		};
 
-		requests
+		request
 			.post('/signup', data)
 			.then((res) => {
 				console.log('O envio: ', data);
