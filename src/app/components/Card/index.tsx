@@ -13,37 +13,53 @@ import { useEffect, useState } from 'react'
 // 	preventDefault(): void
 // }
 
-export default function Card() {
+interface cardInterface {
+	productName: String;
+	description?: String;
+	productPrice: Number;
+	promo: Boolean;
+	promoPrice?: Number;
+	condition?: Number;
+	img?: URL;
+}
 
-	const [quantidade, setQuantidade] = useState(0)
-	const [price, setPrice] = useState(0)
-	const [unidade, setUnidade] = useState(30.9)
+export default function Card({
+	productName,
+	description,
+	productPrice,
+	promo,
+	promoPrice,
+	condition,
+	img,
+}: cardInterface) {
+	const [quantidade, setQuantidade] = useState(0);
+	const [price, setPrice] = useState(0);
+	const [unidade, setUnidade] = useState(30.9);
 	const [fav, setFav] = useState('/favorites.svg');
 
 	function handleQuantidade(e: any) {
 		if (e.target.innerHTML === '+') {
-			setQuantidade(quantidade + 1)
+			setQuantidade(quantidade + 1);
 		} else {
 			if (quantidade !== 0) {
-				setQuantidade(quantidade - 1)
+				setQuantidade(quantidade - 1);
 			}
 		}
 	}
 
 	function handleFav() {
-		if(fav === '/favorites.svg') {
-			setFav('/heart.svg')
+		if (fav === '/favorites.svg') {
+			setFav('/heart.svg');
 			// buscar a lista do banco e adicionar o novo
 		} else {
-			setFav('/favorites.svg')
+			setFav('/favorites.svg');
 			// buscar a lista do banco e retirar o atual
 		}
 	}
 
 	useEffect(() => {
-			setPrice(unidade * quantidade)	
-	}, [quantidade, unidade])
-
+		setPrice(unidade * quantidade);
+	}, [quantidade, unidade]);
 
 	return (
 		<div className={styles.card}>

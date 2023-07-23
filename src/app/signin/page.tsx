@@ -4,22 +4,19 @@ import Image from 'next/image'
 import styles from '../page.module.sass'
 import Link from 'next/link'
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import requests from '../validations/axios.module';
+import { redirect } from 'next/navigation';
 
 export default function SignIn() {
 	const [mostraSenha, setMostraSenha] = useState<string>('password');
 	const [username, setUsername] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
+	const [auth, setAuth] = useState(false);
 
-	// const [csrfToken, setCsrfToken] = useState<string>('');
-
-	const requests = axios.create({
-		baseURL: 'http://localhost:3001',
-		timeout: 1000,
-	});
+	// const [csrfToken, setCsrfToken] = useState<string>('')
 
 	function handleLogin(e: any) {
-		e.preventDefault();
+		const request = requests();
 
 		if (password.length < 8) {
 			alert('A Senha precisa ter pelo menos 8 dígitos');
@@ -31,13 +28,14 @@ export default function SignIn() {
 			password: password,
 		};
 
-		requests
-			.get('/signin')
+		request
+			.post('/signin', data)
 			.then((res) => {
-				console.log(res);
+				setAuth(true);
 			})
 			.catch((error) => {
 				console.log(error);
+				return;
 			});
 	}
 
@@ -53,32 +51,27 @@ export default function SignIn() {
 	}
 
 	useEffect(() => {
-		const requests = axios.create({
-			baseURL: 'https://localhost:3001',
-			timeout: 1000,
-		});
-
-		requests
-			.get('/signin')
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		function authenticate() {
+			if (auth) {
+				redirect('/userhome');
+			}
+			return;
+		}
 
 		// async function fetchCsrfToken() {
 		// 	try {
-		// 		const response = await requests.get('/signin' || '/')
-		// 		const token = response.data.local.csrfToken
-		// 		setCsrfToken(token)
-		// 	} catch(err) {
-		// 		console.error("Error fetching csrf token", err)
+		// 		const response = await requests.get('/signin' || '/');
+		// 		const token = response.data.local.csrfToken;
+		// 		setCsrfToken(token);
+		// 	} catch (err) {
+		// 		console.error('Error fetching csrf token', err);
 		// 	}
 		// }
 
-		// fetchCsrfToken()
-	}, []);
+		// fetchCsrfToken();
+
+		authenticate();
+	}, [auth]);
 
 	return (
 		<main className={styles.mainLogin}>
