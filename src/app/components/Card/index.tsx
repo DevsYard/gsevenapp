@@ -1,26 +1,15 @@
-'use client'
+import Image from 'next/image';
+import styles from '../../page.module.sass';
+import { useEffect, useState } from 'react';
 
-import Image from 'next/image'
-import styles from '../../page.module.sass'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-
-
-// interface MouseEvent {
-// 	target: HTMLElement
-// 	clientX: number
-// 	clientY: number
-// 	preventDefault(): void
-// }
-
-interface cardInterface {
-	productName: String;
-	description?: String;
-	productPrice: Number;
-	promo: Boolean;
-	promoPrice?: Number;
-	condition?: Number;
-	img?: URL;
+interface Product {
+	productName: string;
+	description?: string;
+	productPrice: number;
+	promo: boolean;
+	promoPrice?: number;
+	condition: number;
+	img: string;
 }
 
 export default function Card({
@@ -31,11 +20,11 @@ export default function Card({
 	promoPrice,
 	condition,
 	img,
-}: cardInterface) {
-	const [quantidade, setQuantidade] = useState(0);
-	const [price, setPrice] = useState(0);
-	const [unidade, setUnidade] = useState(30.9);
-	const [fav, setFav] = useState('/favorites.svg');
+}: Product) {
+	const [quantidade, setQuantidade] = useState<number>(0);
+	const [price, setPrice] = useState<number>(0);
+	const [unidade, setUnidade] = useState<number>(0); // Set an appropriate initial value
+	const [fav, setFav] = useState<string>('/favorites.svg');
 
 	function handleQuantidade(e: any) {
 		if (e.target.innerHTML === '+') {
@@ -58,44 +47,40 @@ export default function Card({
 	}
 
 	useEffect(() => {
-		setPrice(unidade * quantidade);
-	}, [quantidade, unidade]);
+		let finalPrice: any = 0;
+		if (promo) {
+			finalPrice = quantidade >= condition ? promoPrice : productPrice;
+		} else finalPrice = productPrice;
+		setUnidade(finalPrice);
+		setPrice(quantidade * unidade);
+	}, [quantidade, unidade, promo, condition, productPrice, promoPrice]);
 
 	return (
 		<div className={styles.card}>
-			<Image
-				className={styles.itemPic}
-				src={'/racao.png'}
-				alt='ração 1'
-				width={155}
-				height={155}
-				priority
-			/>
-			<div onClick={() => handleFav()} className={styles.heart}>
-				<Image src={fav} alt='Favoritar' width={24} height={24} priority />
-			</div>
-			<div className={styles.boxTexto}>
-				<h3>Nome do produto</h3>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
-					nostrum in odit error eius voluptate inventore. Sit odio odit
-					consequatur eos doloribus, minima recusandae, vitae, ipsam voluptatem
-					adipisci tempora inventore?
-				</p>
+			<div className={styles.descriptionContainer}>
+				<Image
+					className={styles.itemPic}
+					src={img || ''}
+					alt={productName}
+					width={155}
+					height={155}
+					priority
+				/>
+				<div onClick={() => handleFav()} className={styles.heart}>
+					<Image src={fav} alt='Favoritar' width={24} height={24} priority />
+				</div>
+				<div className={styles.boxTexto}>
+					<h3>{productName}</h3>
+					<p>{description}</p>
+				</div>
 			</div>
 			<div className={styles.buyContainer}>
 				<div className={styles.btnContainer}>
-					<button
-						className={styles.btnCompra}
-						onClick={(e) => handleQuantidade(e)}
-					>
+					<button className={styles.btnCompra} onClick={handleQuantidade}>
 						-
 					</button>
 					<div className={styles.quantidade}>{quantidade}</div>
-					<button
-						className={styles.btnCompra}
-						onClick={(e) => handleQuantidade(e)}
-					>
+					<button className={styles.btnCompra} onClick={handleQuantidade}>
 						+
 					</button>
 				</div>

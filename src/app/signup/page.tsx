@@ -5,6 +5,7 @@ import styles from '../page.module.sass'
 import Link from 'next/link';
 import { HTMLInputTypeAttribute, useState } from 'react';
 import requests from '../validations/axios.module';
+import { redirect } from 'next/navigation';
 
 export default function SignIn() {
 	const [mostraSenha, setMostraSenha] =
@@ -40,8 +41,6 @@ export default function SignIn() {
 	}
 
 	function handleSubmit(e: any) {
-		e.preventDefault();
-
 		if (password !== repeatPassword) {
 			alert('As senhas precisam ser iguais');
 			return;
@@ -61,8 +60,9 @@ export default function SignIn() {
 		request
 			.post('/signup', data)
 			.then((res) => {
-				console.log('O envio: ', data);
-				console.log('essa é a resposta: ', res);
+				if (res.status === 201) {
+					redirect('/signin');
+				}
 			})
 			.catch((error) => {
 				console.log(error);
