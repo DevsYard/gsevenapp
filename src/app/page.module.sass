@@ -26,6 +26,9 @@
   background: variables.$primary-shadow
   box-shadow: 2px 2px 5px variables.$shadow
 
+.promo
+  display: none
+
 .radio
   display: flex
   align-items: center
@@ -194,22 +197,25 @@
           text-decoration: none
           @include variables.focusStyle(variables.$secondary) 
 
-.menuMotion                                                                      
+.menuMotion
+  display: flex
+  justify-content: center
+  width: 100%
+  & .menu
+    width: 100%
   & .lista, & .chart, & .favorites, & .user
-    width: 25%
-#menuCategories
-  @include variables.menuMotion(0%)
-#menuChart
-  @include variables.menuMotion(-100%)
-#menuFavorites
-  @include variables.menuMotion(-200%)
-#menuUser
-  @include variables.menuMotion(-300%)
+    width: 100%
+  & .lista, & .favorites, & .user
+    padding: 0 2rem
+#menuCategories, #menuChart, #menuFavorites, #menuUser
+  @include variables.menuMotion
 
-
+#menuCategories, #menuFavorites, #menuUser
+  padding: 0 2rem
+  
 .chartContainer
   display: flex
-  justify-content: space-between
+  justify-content: center
   & table
     width: 80%
     border-bottom: solid 1px
@@ -221,23 +227,34 @@
   & .quantTable
     text-align: center
 
+.descriptionContainer
+  display: flex
+  gap: 1rem
 
 .cardsHeader
   display: flex
   width: 100%
   justify-content: space-between
-  align-items: center
+  align-items: flex-start
   h2, h5
     width: fit-content
 .card
   position: relative
   display: flex
+  justify-content: space-between
   gap: 1rem
   margin-block: 1rem
   & .itemPic
+    width: 7.5rem
     border-radius: 10px
     box-shadow: 2px 2px 15px variables.$primary-shadow
   & .heart
+    display: grid
+    place-content: center
+    border-radius: 50%
+    background: variables.$primary
+    width: 30px
+    height: 30px
     position: absolute
     top: 0.5rem
     left: 0.5rem

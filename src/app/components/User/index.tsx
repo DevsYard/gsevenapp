@@ -14,6 +14,11 @@ export default function User() {
 	return (
 		<div className={styles.user}>
 			<h3>Usuário</h3>
+			<ul>
+				<li>
+					<a href='/products/create'>Adicionar Produto</a>
+				</li>
+			</ul>
 		</div>
 	);
 }

@@ -50,76 +50,75 @@ export default function Categories() {
     },
   ]
 
-	const [menuMotion, setMenuMotion] = useState(styles.menuCategories)
+	const [menuMotion, setMenuMotion] = useState(styles.lista);
 
+	function animate(e: any) {
+		let alt = e.target.alt;
 
-  function animate(e: any) {
-    let alt = e.target.alt
+		console.log(e.target);
 
-
-    console.log(e.target)
-		
-
-    if(alt === 'categoria') {
-      setAnimation([
+		if (alt === 'categoria') {
+			setAnimation([
 				styles.functionBtnOff,
 				styles.functionBtnIn,
 				styles.functionBtnIn,
 				styles.functionBtnIn,
-			])
-      setCards(options[0].alt)
-			setMenuMotion(styles.menuCategories)
-    }
-    if(alt === 'carrinho') {
-      setAnimation([
-        styles.functionBtnIn,
-				styles.functionBtnOff,
-				styles.functionBtnIn,
-				styles.functionBtnIn,
-			])
-      setCards(options[1].alt)
-			setMenuMotion(styles.menuChart);
-    }
-    if(alt === 'favoritos') {
-      setAnimation([
-        styles.functionBtnIn,
-				styles.functionBtnIn,
-				styles.functionBtnOff,
-				styles.functionBtnIn,
-			])
-      setCards(options[2].alt)
-			setMenuMotion(styles.menuFavorites);
-    }
-    if(alt === 'usuario') {
-      setAnimation([
-        styles.functionBtnIn,
-				styles.functionBtnIn,
-				styles.functionBtnIn,
-				styles.functionBtnOff,
-			])
-      setCards(options[3].alt)
-			setMenuMotion(styles.menuUser);
-    }
-
-    if (pageAnimate === styles.cards) {
-			setPageAnimate(styles.cardsAnimate)
-		} else {
-			setPageAnimate(styles.cards)
+			]);
+			setCards(options[0].alt);
+			setMenuMotion(styles.lista);
 		}
-  }
+		if (alt === 'carrinho') {
+			setAnimation([
+				styles.functionBtnIn,
+				styles.functionBtnOff,
+				styles.functionBtnIn,
+				styles.functionBtnIn,
+			]);
+			setCards(options[1].alt);
+			setMenuMotion(styles.chart);
+		}
+		if (alt === 'favoritos') {
+			setAnimation([
+				styles.functionBtnIn,
+				styles.functionBtnIn,
+				styles.functionBtnOff,
+				styles.functionBtnIn,
+			]);
+			setCards(options[2].alt);
+			setMenuMotion(styles.favorites);
+		}
+		if (alt === 'usuario') {
+			setAnimation([
+				styles.functionBtnIn,
+				styles.functionBtnIn,
+				styles.functionBtnIn,
+				styles.functionBtnOff,
+			]);
+			setCards(options[3].alt);
+			setMenuMotion(styles.user);
+		}
 
-  return (
+		if (pageAnimate === styles.cards) {
+			setPageAnimate(styles.cardsAnimate);
+		} else {
+			setPageAnimate(styles.cards);
+		}
+	}
+
+	return (
 		<div className={styles.categories}>
 			<nav className={styles.optionsMenu}>
 				<div className={styles.selection}>
-					<Image
-						onClick={(e) => animate(e)}
-						src={options[0].img}
-						alt={options[0].alt}
-						width={26}
-						height={26}
-						priority
-					/>
+					<a href='/userhome'>
+						<Image
+							onClick={(e) => animate(e)}
+							src={options[0].img}
+							alt={options[0].alt}
+							width={26}
+							height={26}
+							priority
+						/>
+					</a>
 					<div className={animation[0]}>{options[0].text}</div>
 				</div>
 				<div className={styles.selection}>
@@ -165,21 +164,22 @@ export default function Categories() {
 					type='text'
 				/>
 				<div className={styles.imgSearch}>
-					<Image src='/lupa.svg' alt='Busca' width={26} height={26} />
+					<Image src='/lupa.svg' alt='Busca' width={26} height={26} priority />
 				</div>
 			</label>
-			<div id={menuMotion} className={styles.menuMotion}>
-				<div className={styles.lista}>
-					<ListaCategorias />
-				</div>
-				<div className={styles.chart}>
-					<Chart />
-				</div>
-				<div className={styles.favorites}>
-					<Favorites />
-				</div>
-				<div className={styles.user}>
-					<User />
+			<div className={styles.menuMotion}>
+				<div id={menuMotion} className={styles.menu}>
+					{menuMotion === styles.lista ? (
+						<ListaCategorias />
+					) : menuMotion === styles.chart ? (
+						<Chart />
+					) : menuMotion === styles.favorites ? (
+						<Favorites />
+					) : menuMotion === styles.user ? (
+						<User />
+					) : (
+						''
+					)}
 				</div>
 			</div>
 		</div>
