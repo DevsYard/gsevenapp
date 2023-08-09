@@ -31,7 +31,7 @@ export default function SignIn() {
 		request
 			.post('/signin', data)
 			.then((res) => {
-				setAuth(true);
+				res.data ? setAuth(true) : setAuth(false);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -57,19 +57,6 @@ export default function SignIn() {
 			}
 			return;
 		}
-
-		// async function fetchCsrfToken() {
-		// 	try {
-		// 		const response = await requests.get('/signin' || '/');
-		// 		const token = response.data.local.csrfToken;
-		// 		setCsrfToken(token);
-		// 	} catch (err) {
-		// 		console.error('Error fetching csrf token', err);
-		// 	}
-		// }
-
-		// fetchCsrfToken();
-
 		authenticate();
 	}, [auth]);
 

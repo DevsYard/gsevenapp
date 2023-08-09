@@ -14,11 +14,48 @@ export default function User() {
 	return (
 		<div className={styles.user}>
 			<h3>Usuário</h3>
-			<ul>
-				<li>
-					<a href='/products/create'>Adicionar Produto</a>
-				</li>
-			</ul>
+			<Admin />
+		</div>
+	);
+}
+
+function Admin() {
+	return (
+		<div className={styles.userSettings}>
+			<li>
+				<a href='/profile'>Perfil</a>
+			</li>
+			<li>
+				<a href='/products/create'>Adicionar Produto</a>
+			</li>
+			<li>
+				<a href='/products/edit'>Editar Produto</a>
+			</li>
+			<li>
+				<a href='/products/delete'>Apagar Produto</a>
+			</li>
+			<li>
+				<a href='/settings'>Gerenciar</a>
+			</li>
+			<li>
+				<a href='/signin'>Sair</a>
+			</li>
+		</div>
+	);
+}
+
+function Customer() {
+	return (
+		<div className={styles.userSettings}>
+			<li>
+				<a href='/profile'>Perfil</a>
+			</li>
+			<li>
+				<a href='/settings'>Gerenciar</a>
+			</li>
+			<li>
+				<a href='/signin'>Sair</a>
+			</li>
 		</div>
 	);
 }
