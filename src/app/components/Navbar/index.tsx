@@ -30,14 +30,16 @@ export default function Navbar() {
 				height={73}
 				priority
 			/>
-			<Image
-				className={styles.hamburguer}
-				src='/hamburguer.svg'
-				alt='Menu hamburguer'
-				width={32}
-				height={32}
-				priority
-			/>
+			<div className={styles.activeHamb}>
+				<Image
+					className={styles.hamburguer}
+					src='/hamburguer.svg'
+					alt='Menu hamburguer'
+					width={32}
+					height={32}
+					priority
+				/>
+			</div>
 		</nav>
 	);
 }

@@ -20,6 +20,12 @@
         filter: brightness(0.9)
         cursor: pointer
 
+.prodCreationForm
+  display: flex
+  flex-direction: column
+  gap: 1rem
+  margin-top: 1rem
+
 .input
   @include variables.btn(1rem, false, true)
   @include variables.focusStyle(variables.$secondary)
@@ -44,7 +50,7 @@
       position: relative
       @include variables.radioBefore(-2px, -2px, 1rem, 1rem)
       @include variables.radioAfter(2px, 2px, 0.5rem, 0.5rem)
-        
+       
 .inputBtn
   @include variables.btn(1.2rem, false, false)
   margin-top: 40px
@@ -130,6 +136,8 @@
     display: none
 //------------------------------
 
+.prodCreation
+  padding: 1rem
 
 .categories
   position: relative
@@ -287,7 +295,17 @@
       filter: brightness(0.8)
   & .quantidade
     padding: 0 0.5rem
-    
+
+.user
+  padding-block: 0.5rem
+.userSettings
+  display: grid
+  gap: 0.5rem
+  & li
+    list-style: none
+    padding-inline: 1rem
+    & a 
+      text-decoration: none
 
 .mainPage
   display: grid
@@ -301,16 +319,35 @@
     position: absolute
     left: -100%
   .rightScreen
-    width: 100vw
+    width: 100%
+    background: variables.$primary
+  
+  .prodCreation
+    width: 100%
+    display: grid
+    place-content: center
   
   .nav
     position: relative
     padding: 1rem
-    & .hamburguer
-      display: block
+    display: flex
+    justify-content: space-between
+    & .activeHamb
       position: absolute
       top: calc(50% - 16px)
       right: 1.5rem
+      cursor: pointer
+      z-index: 30
+      &:active
+        position: absolute
+        top: 0
+        right: 0
+        width: 60vw
+        height: 100vh
+        background: variables.$secondary
+      & .hamburguer
+        display: block
+        
   .logo
     display: none
   .categories
@@ -327,14 +364,10 @@
     padding-bottom: 0.5rem
     border-bottom: solid
     & .itemPic
-      width: 100px
       height: 100px
     & .buyContainer
-      position: absolute
-      top: 0
-      right: 0
+      position: relative
       display: flex
-      flex-direction: column
-      justify-content: flex-start
-      height: 100%
-  
+      align-items: center
+      gap: 1rem
+      margin-top: 1rem
