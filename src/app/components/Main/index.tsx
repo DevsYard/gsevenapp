@@ -1,7 +1,9 @@
-import Image from 'next/image'
-import styles from '../../page.module.sass'
-import Link from 'next/link'
-import Card from '../Card/index'
+'use client';
+
+import Image from 'next/image';
+import styles from '../../page.module.sass';
+import Link from 'next/link';
+import Card from '../Card/index';
 import requests from '../../validations/axios.module';
 import { useEffect, useState } from 'react';
 
@@ -18,7 +20,6 @@ interface Product {
 
 export default function Main() {
 	const [cards, setCards] = useState<Product[]>([]);
-	// const cards: Product[] = [];
 
 	useEffect(() => {
 		const request = requests();
@@ -51,4 +52,3 @@ export default function Main() {
 		</main>
 	);
 }
-
