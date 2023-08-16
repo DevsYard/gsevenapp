@@ -80,7 +80,6 @@ export default function SignIn() {
 					type='text'
 					name='username'
 					onChange={handleUsername}
-					autoComplete={username}
 				/>
 				<input
 					placeholder='Senha'
@@ -88,7 +87,6 @@ export default function SignIn() {
 					type={mostraSenha}
 					name='password'
 					onChange={handlePassword}
-					autoComplete={password}
 				/>
 				<label className={styles.checkLabel}>
 					Mostrar senha
