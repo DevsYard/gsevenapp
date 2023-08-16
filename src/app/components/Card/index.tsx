@@ -58,14 +58,16 @@ export default function Card({
 	return (
 		<div className={styles.card}>
 			<div className={styles.descriptionContainer}>
-				<Image
-					className={styles.itemPic}
-					src={img || ''}
-					alt={productName}
-					width={155}
-					height={155}
-					priority
-				/>
+				<a href='product/detail'>
+					<Image
+						className={styles.itemPic}
+						src={img || ''}
+						alt={productName}
+						width={155}
+						height={155}
+						priority
+					/>
+				</a>
 				<div onClick={() => handleFav()} className={styles.heart}>
 					<Image src={fav} alt='Favoritar' width={24} height={24} priority />
 				</div>

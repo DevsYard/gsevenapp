@@ -84,7 +84,11 @@ export default function CreateProduct() {
 				<Categories />
 				<div className={styles.prodCreation}>
 					<h1>Criação de produto</h1>
-					<form action='submit' className={styles.prodCreationForm}>
+					<form
+						action='submit'
+						name='productCreationForm'
+						className={styles.prodCreationForm}
+					>
 						<input
 							placeholder='Nome do produto'
 							className={styles.input}

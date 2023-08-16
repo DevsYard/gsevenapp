@@ -1,5 +1,3 @@
-'use client'
-
 import styles from '../page.module.sass';
 import Navbar from '../components/Navbar';
 import Categories from '../components/Categories';
