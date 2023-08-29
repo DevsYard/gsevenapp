@@ -132,6 +132,8 @@
   padding-inline: 4rem
   padding-block: 1rem 
   background: variables.$secondary
+  & .activeHamb
+      position: absolute
   & .hamburguer
     display: none
 //------------------------------
@@ -333,20 +335,19 @@
     display: flex
     justify-content: space-between
     & .activeHamb
-      position: absolute
       top: calc(50% - 16px)
       right: 1.5rem
       cursor: pointer
-      z-index: 30
-      &:active
-        position: absolute
-        top: 0
-        right: 0
-        width: 60vw
-        height: 100vh
-        background: variables.$secondary
       & .hamburguer
+        transition: 500ms ease-in-out
         display: block
+        &:active
+          top: 0
+          left: 100%
+          width: 50vw
+          height: 100vh
+          background: variables.$tertiary
+          z-index: 100
         
   .logo
     display: none
