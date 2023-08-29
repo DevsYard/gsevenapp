@@ -1,8 +1,11 @@
+'use client'
+
 import Image from 'next/image'
 import styles from '../../page.module.sass'
 import Link from 'next/link'
 
-export default function Navbar() {
+export default function Navbar(props:any) {
+
   return (
 		<nav className={styles.nav}>
 			<div className={styles.profile}>
@@ -17,7 +20,7 @@ export default function Navbar() {
 				</div>
 				<div className={styles.online}></div>
 				<div className={styles.welcome}>
-					<p>Olá, Fulana</p>
+					<p>Olá, {props.user}</p>
 					<p>No que podemos ajudar?</p>
 				</div>
 			</div>
