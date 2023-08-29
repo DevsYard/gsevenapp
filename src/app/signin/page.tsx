@@ -78,14 +78,14 @@ export default function SignIn() {
 	useEffect(() => {
 		function authenticate() {
 			if (auth) {
-				session.isLogged = auth
-				session.user = username
+				session.isLogged = auth;
+				session.user = username;
 				redirect('/userhome');
 			}
 			return;
 		}
 		authenticate();
-	}, [auth]);
+	}, [auth, username, session]);
 
 	return (
 		<main className={styles.mainLogin}>
