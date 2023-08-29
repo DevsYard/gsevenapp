@@ -1,21 +1,29 @@
 'use client'
 
-import Image from 'next/image'
-import styles from '../page.module.sass'
-import Link from 'next/link'
-import { useEffect, useState } from 'react';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+import Snackbar from '@mui/material/Snackbar';
+import Image from 'next/image';
+import styles from '../page.module.sass';
+import Link from 'next/link';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import requests from '../validations/axios.module';
 import { redirect } from 'next/navigation';
+import SessionContext from '../contexts/SessionContext';
 
 export default function SignIn() {
-	const [mostraSenha, setMostraSenha] = useState<string>('password');
-	const [username, setUsername] = useState<string>('');
-	const [password, setPassword] = useState<string>('');
+	const [mostraSenha, setMostraSenha] = useState('password');
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
 	const [auth, setAuth] = useState(false);
+	const [token, setToken] = useState('');
 
-	// const [csrfToken, setCsrfToken] = useState<string>('')
+	const session = useContext(SessionContext)
 
-	function handleLogin(e: any) {
+	function handleLogin() {
 		const request = requests();
 
 		if (password.length < 8) {
@@ -31,28 +39,47 @@ export default function SignIn() {
 		request
 			.post('/signin', data)
 			.then((res) => {
-				res.data ? setAuth(true) : setAuth(false);
+				if (res.data) {
+					setToken(res.data.token);
+					console.log(token);
+					setAuth(true);
+				} else {
+					setAuth(false);
+				}
+				
 			})
 			.catch((error) => {
-				console.log(error);
+				const msg = error.response.data.message;
+				console.log(msg);
+				// <Snackbar
+				// 	open={open}
+				// 	autoHideDuration={6000}
+				// 	onClose={handleClose}
+				// 	message={msg}
+				// 	action={action}
+				// />
+
 				return;
 			});
 	}
 
-	function handleUsername(e: any) {
+	function handleUsername(e: ChangeEvent<HTMLInputElement>) {
 		setUsername(e.target.value);
 	}
-	function handlePassword(e: any) {
+	function handlePassword(e: ChangeEvent<HTMLInputElement>) {
 		setPassword(e.target.value);
 	}
 
-	function handleMostrarSenha(e: any) {
+	function handleMostrarSenha(e: ChangeEvent<HTMLInputElement>) {
 		e.target.checked ? setMostraSenha('text') : setMostraSenha('password');
+		console.log(e);
 	}
 
 	useEffect(() => {
 		function authenticate() {
 			if (auth) {
+				session.isLogged = auth
+				session.user = username
 				redirect('/userhome');
 			}
 			return;
@@ -73,9 +100,9 @@ export default function SignIn() {
 				/>
 			</aside>
 			<form action='submit' className={styles.rightScreen}>
-				{/* <input type='hidden' name='_csrf' value={csrfToken} /> */}
 				<input
 					placeholder='Nome de usuário'
+					autoComplete='username'
 					className={styles.input}
 					type='text'
 					name='username'
@@ -83,6 +110,7 @@ export default function SignIn() {
 				/>
 				<input
 					placeholder='Senha'
+					autoComplete='current-password'
 					className={styles.input}
 					type={mostraSenha}
 					name='password'
@@ -96,11 +124,7 @@ export default function SignIn() {
 						onChange={(event) => handleMostrarSenha(event)}
 					/>
 				</label>
-				<button
-					className={styles.inputBtn}
-					onClick={(e) => handleLogin(e)}
-					type='button'
-				>
+				<button className={styles.inputBtn} onClick={handleLogin} type='button'>
 					Logar
 				</button>
 				<button className={styles.inputGoogle} type='button'>

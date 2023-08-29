@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import styles from '../../page.module.sass';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import requests from '../../validations/axios.module';
 import Navbar from '../../components/Navbar';
 import Categories from '../../components/Categories';
+import SessionContext from '@/app/contexts/SessionContext';
 
 export default function CreateProduct() {
 	const [productName, setProductName] = useState<string>('');
@@ -77,92 +78,96 @@ export default function CreateProduct() {
 			});
 	}
 
-	return (
-		<div className={styles.main}>
-			<Navbar />
-			<div id={styles.content}>
-				<Categories />
-				<div className={styles.prodCreation}>
-					<h1>Criação de produto</h1>
-					<form
-						action='submit'
-						name='productCreationForm'
-						className={styles.prodCreationForm}
-					>
-						<input
-							placeholder='Nome do produto'
-							className={styles.input}
-							type='text'
-							name='productName'
-							onChange={handleProductName}
-						/>
-						<input
-							placeholder='Preço R$0,00'
-							className={styles.input}
-							type='text'
-							name='price'
-							onChange={handlePrice}
-						/>
-						<textarea
-							placeholder='Descrição'
-							className={styles.input}
-							name='description'
-							onChange={handleDescription}
-						/>
-						<div className={styles.checkerContainer}>
-							<label className={styles.radio} htmlFor='promoType'>
-								<input
-									className={styles.checkers}
-									name='promoType'
-									type='radio'
-									value='não tem'
-									onChange={handlePromo}
-								/>
-								Sem Promo
-							</label>
-							<label className={styles.radio} htmlFor='promoType'>
-								<input
-									className={styles.checkers}
-									name='promoType'
-									type='radio'
-									value='tem promo'
-									onChange={handlePromo}
-								/>
-								Tem Promo
-							</label>
-						</div>
-						<input
-							placeholder='Preço na promoção R$0,00'
-							className={promo}
-							type='text'
-							name='promoPrice'
-							onChange={handlePromoPrice}
-						/>
+	const {isLogged, user} = useContext(SessionContext)
 
-						<input
-							placeholder='Condição da promoção (Quantidade)'
-							className={promo}
-							type='number'
-							name='condition'
-							onChange={handleCondition}
-						/>
-						<input
-							placeholder='URL da imagem'
-							className={styles.input}
-							type='text'
-							name='img'
-							onChange={handleImage}
-						/>
-						<button
-							className={styles.inputBtn}
-							type='button'
-							onClick={handleSubmit}
+	return (
+		<SessionContext.Provider value={{ isLogged, user }}>
+			<div className={styles.main}>
+				<Navbar user={user} />
+				<div id={styles.content}>
+					<Categories />
+					<div className={styles.prodCreation}>
+						<h1>Criação de produto</h1>
+						<form
+							action='submit'
+							name='productCreationForm'
+							className={styles.prodCreationForm}
 						>
-							Adicionar Produto
-						</button>
-					</form>
+							<input
+								placeholder='Nome do produto'
+								className={styles.input}
+								type='text'
+								name='productName'
+								onChange={handleProductName}
+							/>
+							<input
+								placeholder='Preço R$0,00'
+								className={styles.input}
+								type='text'
+								name='price'
+								onChange={handlePrice}
+							/>
+							<textarea
+								placeholder='Descrição'
+								className={styles.input}
+								name='description'
+								onChange={handleDescription}
+							/>
+							<div className={styles.checkerContainer}>
+								<label className={styles.radio} htmlFor='promoType'>
+									<input
+										className={styles.checkers}
+										name='promoType'
+										type='radio'
+										value='não tem'
+										onChange={handlePromo}
+									/>
+									Sem Promo
+								</label>
+								<label className={styles.radio} htmlFor='promoType'>
+									<input
+										className={styles.checkers}
+										name='promoType'
+										type='radio'
+										value='tem promo'
+										onChange={handlePromo}
+									/>
+									Tem Promo
+								</label>
+							</div>
+							<input
+								placeholder='Preço na promoção R$0,00'
+								className={promo}
+								type='text'
+								name='promoPrice'
+								onChange={handlePromoPrice}
+							/>
+
+							<input
+								placeholder='Condição da promoção (Quantidade)'
+								className={promo}
+								type='number'
+								name='condition'
+								onChange={handleCondition}
+							/>
+							<input
+								placeholder='URL da imagem'
+								className={styles.input}
+								type='text'
+								name='img'
+								onChange={handleImage}
+							/>
+							<button
+								className={styles.inputBtn}
+								type='button'
+								onClick={handleSubmit}
+							>
+								Adicionar Produto
+							</button>
+						</form>
+					</div>
 				</div>
 			</div>
-		</div>
+		</SessionContext.Provider>
 	);
 }

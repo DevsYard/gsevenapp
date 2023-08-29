@@ -1,13 +1,13 @@
-import { createContext, Dispatch, SetStateAction } from 'react';
+import { createContext} from 'react';
 
 interface isLoggedIn {
-	auth: boolean;
-	setAuth: Dispatch<SetStateAction<boolean>>;
+	isLogged: boolean;
+	user: string
 }
 
-const IsLogged = createContext<isLoggedIn>({
-	auth: false,
-	setAuth: () => {},
+const SessionContext = createContext<isLoggedIn>({
+	isLogged: false,
+	user: ''
 });
 
-export default IsLogged;
+export default SessionContext;
