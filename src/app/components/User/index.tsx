@@ -1,21 +1,28 @@
-import Image from 'next/image';
+'use client';
+
+import { useContext } from 'react';
 import styles from '../../page.module.sass';
 import Link from 'next/link';
-import requests from '../../validations/axios.module';
-import { useState } from 'react';
+import SessionContext from '../../contexts/sessionContext';
+import useUserType from '@/app/hooks/useUserType';
 
 export default function User() {
-	const request = requests();
-
-	const [users, setUsers] = useState({});
-
-	request.get('/users');
+	const session = useContext(SessionContext);
+	const { userType } = useUserType();
 
 	return (
-		<div className={styles.user}>
-			<h3>Usuário</h3>
-			<Admin />
-		</div>
+		<SessionContext.Provider value={session}>
+			<div className={styles.user}>
+				<h3>Usuário</h3>
+				{session.admin && session.isLogged ? (
+					<Admin />
+				) : session.user && session.isLogged ? (
+					<Customer />
+				) : (
+					<>Área Logada</>
+				)}
+			</div>
+		</SessionContext.Provider>
 	);
 }
 
