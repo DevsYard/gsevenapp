@@ -12,16 +12,21 @@ import Link from 'next/link';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import requests from '../validations/axios.module';
 import { redirect } from 'next/navigation';
-import SessionContext from '../contexts/SessionContext';
+import SessionContext from '../contexts/sessionContext';
+import useUserType from '../hooks/useUserType';
+
+interface Data {
+	username: string;
+	password: string;
+}
 
 export default function SignIn() {
 	const [mostraSenha, setMostraSenha] = useState('password');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [auth, setAuth] = useState(false);
-	const [token, setToken] = useState('');
 
-	const session = useContext(SessionContext)
+	const session = useContext(SessionContext);
 
 	function handleLogin() {
 		const request = requests();
@@ -31,7 +36,7 @@ export default function SignIn() {
 			return;
 		}
 
-		const data = {
+		const data: Data = {
 			username: username,
 			password: password,
 		};
@@ -40,27 +45,19 @@ export default function SignIn() {
 			.post('/signin', data)
 			.then((res) => {
 				if (res.data) {
-					setToken(res.data.token);
-					console.log(token);
-					setAuth(true);
-				} else {
-					setAuth(false);
+					setAuth(res.data.auth);
+					session.admin = res.data.admin;
+					session.isLogged = res.data.auth;
+					session.user = username;
+					session.token = res.data.token;
+					redirect('/userhome');
 				}
-				
 			})
-			.catch((error) => {
-				const msg = error.response.data.message;
+			.catch((error: any) => {
+				const msg = error.response.data.msg;
 				console.log(msg);
-				// <Snackbar
-				// 	open={open}
-				// 	autoHideDuration={6000}
-				// 	onClose={handleClose}
-				// 	message={msg}
-				// 	action={action}
-				// />
-
-				return;
 			});
+		return;
 	}
 
 	function handleUsername(e: ChangeEvent<HTMLInputElement>) {
@@ -78,81 +75,85 @@ export default function SignIn() {
 	useEffect(() => {
 		function authenticate() {
 			if (auth) {
-				session.isLogged = auth;
-				session.user = username;
 				redirect('/userhome');
 			}
 			return;
 		}
 		authenticate();
-	}, [auth, username, session]);
+	}, [auth]);
 
 	return (
-		<main className={styles.mainLogin}>
-			<aside className={styles.aside}>
-				<Image
-					src='/Logo.svg'
-					alt='Logo'
-					className={styles.vercelLogo}
-					width={200}
-					height={100}
-					priority
-				/>
-			</aside>
-			<form action='submit' className={styles.rightScreen}>
-				<input
-					placeholder='Nome de usuário'
-					autoComplete='username'
-					className={styles.input}
-					type='text'
-					name='username'
-					onChange={handleUsername}
-				/>
-				<input
-					placeholder='Senha'
-					autoComplete='current-password'
-					className={styles.input}
-					type={mostraSenha}
-					name='password'
-					onChange={handlePassword}
-				/>
-				<label className={styles.checkLabel}>
-					Mostrar senha
+		<SessionContext.Provider value={session}>
+			<main className={styles.mainLogin}>
+				<aside className={styles.aside}>
+					<Image
+						src='/Logo.svg'
+						alt='Logo'
+						className={styles.vercelLogo}
+						width={200}
+						height={100}
+						priority
+					/>
+				</aside>
+				<form action='submit' className={styles.rightScreen}>
 					<input
-						className={styles.checkbox}
-						type='checkbox'
-						onChange={(event) => handleMostrarSenha(event)}
+						placeholder='Nome de usuário'
+						autoComplete='username'
+						className={styles.input}
+						type='text'
+						name='username'
+						onChange={handleUsername}
 					/>
-				</label>
-				<button className={styles.inputBtn} onClick={handleLogin} type='button'>
-					Logar
-				</button>
-				<button className={styles.inputGoogle} type='button'>
-					<Image
-						src='/google.png'
-						alt='Logo Google'
-						width={24}
-						height={24}
-						priority
+					<input
+						placeholder='Senha'
+						autoComplete='current-password'
+						className={styles.input}
+						type={mostraSenha}
+						name='password'
+						onChange={handlePassword}
 					/>
-					Logar com Google
-				</button>
-				<button className={styles.inputFacebook} type='button'>
-					<Image
-						src='/facebook.png'
-						alt='Logo Google'
-						width={24}
-						height={24}
-						priority
-					/>
-					Logar com Facebook
-				</button>
-				<p>
-					<Link className={styles.link} href='/signup'>
-						Ou crie seu cadastro
-					</Link>
-				</p>
-			</form>
-		</main>
+					<label className={styles.checkLabel}>
+						Mostrar senha
+						<input
+							className={styles.checkbox}
+							type='checkbox'
+							onChange={(event) => handleMostrarSenha(event)}
+						/>
+					</label>
+					<button
+						className={styles.inputBtn}
+						onClick={handleLogin}
+						type='button'
+					>
+						Logar
+					</button>
+					<button className={styles.inputGoogle} type='button'>
+						<Image
+							src='/google.png'
+							alt='Logo Google'
+							width={24}
+							height={24}
+							priority
+						/>
+						Logar com Google
+					</button>
+					<button className={styles.inputFacebook} type='button'>
+						<Image
+							src='/facebook.png'
+							alt='Logo Google'
+							width={24}
+							height={24}
+							priority
+						/>
+						Logar com Facebook
+					</button>
+					<p>
+						<Link className={styles.link} href='/signup'>
+							Ou crie seu cadastro
+						</Link>
+					</p>
+				</form>
+			</main>
+		</SessionContext.Provider>
 	);
 }

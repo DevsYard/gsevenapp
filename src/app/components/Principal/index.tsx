@@ -1,8 +1,6 @@
 'use client';
 
-import Image from 'next/image';
 import styles from '../../page.module.sass';
-import Link from 'next/link';
 import Card from '../Card/index';
 import requests from '../../validations/axios.module';
 import { useEffect, useState } from 'react';
@@ -18,7 +16,7 @@ interface Product {
 	img: string;
 }
 
-export default function Main() {
+export default function Principal(pageProps: any) {
 	const [cards, setCards] = useState<Product[]>([]);
 
 	useEffect(() => {
@@ -30,25 +28,23 @@ export default function Main() {
 	}, []);
 
 	return (
-		<main className={styles.mainPage}>
-			<>
-				<header className={styles.cardsHeader}>
-					<h2>Melhores ofertas</h2>
-					<h5>Ordenar</h5>
-				</header>
-				{cards.map((card) => (
-					<Card
-						key={card._id}
-						productName={card.productName}
-						description={card.description}
-						productPrice={card.price}
-						promo={card.promo}
-						promoPrice={card.promoPrice}
-						condition={card.condition}
-						img={card.img}
-					/>
-				))}
-			</>
-		</main>
+		<>
+			<header className={styles.cardsHeader}>
+				<h2>Melhores ofertas</h2>
+				<h5>Ordenar</h5>
+			</header>
+			{cards.map((card) => (
+				<Card
+					key={card._id}
+					productName={card.productName}
+					description={card.description}
+					productPrice={card.price}
+					promo={card.promo}
+					promoPrice={card.promoPrice}
+					condition={card.condition}
+					img={card.img}
+				/>
+			))}
+		</>
 	);
 }

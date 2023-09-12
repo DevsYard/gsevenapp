@@ -1,13 +1,19 @@
-import { createContext} from 'react';
+import { createContext } from 'react';
 
 interface isLoggedIn {
 	isLogged: boolean;
-	user: string
+	user: string;
+	admin: boolean;
+	token: string;
 }
 
-const SessionContext = createContext<isLoggedIn>({
+const initialSession: isLoggedIn = {
 	isLogged: false,
-	user: ''
-});
+	user: '',
+	admin: false,
+	token: '',
+};
+
+const SessionContext = createContext<isLoggedIn>(initialSession);
 
 export default SessionContext;

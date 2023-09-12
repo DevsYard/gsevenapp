@@ -1,6 +1,0 @@
-const esperaAnima = document.querrySelector('.esperaAnimacao')
-
-
-esperaAnima.addEventListener('click', () => {
-  esperaAnima.classList.add('teste')
-})

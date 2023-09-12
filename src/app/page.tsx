@@ -2,14 +2,18 @@
 
 import styles from './page.module.sass';
 import SignIn from './signin/page';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import UserHome from './userhome/page';
+import SessionContext from './contexts/sessionContext';
 
 export default function Home() {
-	
+	const session = useContext(SessionContext);
+
 	return (
-		<main className={styles.main}>
-			<SignIn />
-		</main>
+		<SessionContext.Provider value={session}>
+			<main className={styles.main}>
+				<SignIn />
+			</main>
+		</SessionContext.Provider>
 	);
 }

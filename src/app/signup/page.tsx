@@ -82,7 +82,6 @@ export default function SignIn() {
 				/>
 			</aside>
 			<form action='submit' className={styles.rightScreen}>
-				{/* <input type='hidden' name='_csrf' value={csrfToken} /> */}
 				<input
 					placeholder='Nome de usuário'
 					className={styles.input}
