@@ -6,11 +6,11 @@ import SessionContext from "@/app/contexts/SessionContext";
 
 
 export default function Profile() {
-  const {isLogged, user} = useContext(SessionContext)
+  const session = useContext(SessionContext);
 
 	return (
-		<SessionContext.Provider value={{ isLogged, user }}>
-			<Navbar user={user} />
+		<SessionContext.Provider value={session}>
+			<Navbar user={session.user} />
 			<h1>Admin Profile</h1>
 		</SessionContext.Provider>
 	);

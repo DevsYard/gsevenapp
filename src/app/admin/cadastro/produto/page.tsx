@@ -1,16 +1,15 @@
 import Navbar from "@/app/components/Navbar"
 import Image from 'next/image'
 import styles from '../../page.module.sass'
-import SessionContext from "@/app/contexts/SessionContext";
-import { useContext } from "react";
-
+import SessionContext from '../../../contexts/sessionContext';
+import { useContext } from 'react';
 
 export default function Produto() {
-  const {isLogged, user} = useContext(SessionContext)
+	const session = useContext(SessionContext);
 
 	return (
-		<SessionContext.Provider value={{ isLogged, user }}>
-			<Navbar user={user} />
+		<SessionContext.Provider value={session}>
+			<Navbar user={session.user} />
 			<h1>Cadastro de Produtos</h1>
 		</SessionContext.Provider>
 	);
