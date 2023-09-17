@@ -54,8 +54,8 @@ export default function SignIn() {
 				}
 			})
 			.catch((error: any) => {
-				const msg = error.response.data.msg;
-				console.log(msg);
+				const msg = error.response.data.message;
+				alert(msg);
 			});
 		return;
 	}

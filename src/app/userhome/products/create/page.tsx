@@ -1,12 +1,9 @@
 'use client';
 
-import Image from 'next/image';
-import styles from '../../page.module.sass';
+import styles from '../../../page.module.sass';
 import { useContext, useState } from 'react';
-import requests from '../../validations/axios.module';
-import Navbar from '../../components/Navbar';
-import Categories from '../../components/Categories';
-import SessionContext from '../../contexts/sessionContext';
+import requests from '../../../validations/axios.module';
+import SessionContext from '../../../contexts/sessionContext';
 
 export default function CreateProduct() {
 	const [productName, setProductName] = useState<string>('');

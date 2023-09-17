@@ -1,46 +1,97 @@
 import Image from 'next/image'
-import styles from '../../page.module.sass'
+import styles from './index.module.sass';
 import Link from 'next/link'
 
 export default function ListaCategorias() {
 	return (
 		<div className={styles.catList}>
 			<details className={styles.listCategories}>
+				<summary className={styles.summary}>
+					<ul>
+						<li>
+							<Link href='/userhome'>Tudo</Link>
+						</li>
+					</ul>
+				</summary>
+			</details>
+			<details className={styles.listCategories}>
 				<summary className={styles.summary}>Cães</summary>
 				<ul className={styles.ul}>
-					<li><a href='/dog_food'>{'ração'}</a></li>
-					<li><a href='/toys'>{'brinquedo'}</a></li>
-					<li><a href='/bath'>{'banho & tosa'}</a></li>
-					<li><a href='/cleaning'>{'limpeza'}</a></li>
-					<li><a href='/pharmacy'>{'farmácia'}</a></li>
-					<li><a href='/abode'>{'estadia'}</a></li>
-					<li><a href='/healthcare'>{'cuidados'}</a></li>
-					<li><a href='/snacks'>{'snacks'}</a></li>
+					<li>
+						<Link href='/dog_food'>{'ração'}</Link>
+					</li>
+					<li>
+						<Link href='/toys'>{'brinquedo'}</Link>
+					</li>
+					<li>
+						<Link href='/bath'>{'banho & tosa'}</Link>
+					</li>
+					<li>
+						<Link href='/cleaning'>{'limpeza'}</Link>
+					</li>
+					<li>
+						<Link href='/pharmacy'>{'farmácia'}</Link>
+					</li>
+					<li>
+						<Link href='/abode'>{'estadia'}</Link>
+					</li>
+					<li>
+						<Link href='/healthcare'>{'cuidados'}</Link>
+					</li>
+					<li>
+						<Link href='/snacks'>{'snacks'}</Link>
+					</li>
 				</ul>
 			</details>
 			<details className={styles.listCategories}>
 				<summary className={styles.summary}>Gatos</summary>
 				<ul className={styles.ul}>
-					<li><a href='/cat_food'>{'ração'}</a></li>
-					<li><a href='#'>{'brinquedo'}</a></li>
-					<li><a href='#'>{'banho & tosa'}</a></li>
-					<li><a href='#'>{'limpeza'}</a></li>
-					<li><a href='#'>{'farmácia'}</a></li>
-					<li><a href='#'>{'estadia'}</a></li>
-					<li><a href='#'>{'cuidados'}</a></li>
-					<li><a href='#'>{'snacks'}</a></li>
+					<li>
+						<Link href='/cat_food'>{'ração'}</Link>
+					</li>
+					<li>
+						<Link href='#'>{'brinquedo'}</Link>
+					</li>
+					<li>
+						<Link href='#'>{'banho & tosa'}</Link>
+					</li>
+					<li>
+						<Link href='#'>{'limpeza'}</Link>
+					</li>
+					<li>
+						<Link href='#'>{'farmácia'}</Link>
+					</li>
+					<li>
+						<Link href='#'>{'estadia'}</Link>
+					</li>
+					<li>
+						<Link href='#'>{'cuidados'}</Link>
+					</li>
+					<li>
+						<Link href='#'>{'snacks'}</Link>
+					</li>
 				</ul>
 			</details>
 			<details className={styles.listCategories}>
-				<summary className={styles.summary}>Peixes</summary><a href='#'>teste</a></details>
+				<summary className={styles.summary}>Peixes</summary>
+				<Link href='#'>teste</Link>
+			</details>
 			<details className={styles.listCategories}>
-				<summary className={styles.summary}>Exóticos</summary><a href='#'>teste</a></details>
+				<summary className={styles.summary}>Exóticos</summary>
+				<Link href='#'>teste</Link>
+			</details>
 			<details className={styles.listCategories}>
-				<summary className={styles.summary}>Rações</summary><a href='#'>teste</a></details>
+				<summary className={styles.summary}>Rações</summary>
+				<Link href='#'>teste</Link>
+			</details>
 			<details className={styles.listCategories}>
-				<summary className={styles.summary}>Farmácia</summary><a href='#'>teste</a></details>
+				<summary className={styles.summary}>Farmácia</summary>
+				<Link href='#'>teste</Link>
+			</details>
 			<details className={styles.listCategories}>
-				<summary className={styles.summary}>Banho & Tosa</summary><a href='#'>teste</a></details>
+				<summary className={styles.summary}>Banho & Tosa</summary>
+				<Link href='#'>teste</Link>
+			</details>
 		</div>
 	);
 }
