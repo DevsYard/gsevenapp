@@ -1,14 +1,14 @@
 'use client'
 
-import styles from '../page.module.sass';
-import Navbar from '../components/Navbar';
-import Categories from '../components/Categories';
 import SessionContext from '@/app/contexts/sessionContext';
 import { useContext } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import Principal from '../components/Principal';
 import Favorites from '../components/Favorites';
-import CreateProduct from '../products/create/page';
+import Principal from '../components/Principal';
+import CreateProduct from './products/create/page';
+import EditProduct from './products/edit/page';
+import Profile from './profile/page';
+import Settings from './settings/page';
 
 interface isLoggedIn {
 	isLogged: boolean;
@@ -25,12 +25,20 @@ export default function UserHome() {
 	const renderMainContent = (session: isLoggedIn) => {
 		const url = `${pathname}?${searchParams}`;
 
-		if (url === '/userhome') {
+		console.log('url: ', url);
+
+		if (url === 'userhome') {
 			return <Principal {...session} />;
-		} else if (url === '/favorites') {
+		} else if (url === `/favorites`) {
 			return <Favorites />;
-		} else if (url === '/products/create') {
+		} else if (url === `/products/create`) {
 			return <CreateProduct />;
+		} else if (url === `/products/edit`) {
+			return <EditProduct />;
+		} else if (url === `/profile`) {
+			return <Profile />;
+		} else if (url === `/settings`) {
+			return <Settings />;
 		} else {
 			return <Principal {...session} />;
 		}
@@ -38,13 +46,7 @@ export default function UserHome() {
 
 	return (
 		<SessionContext.Provider value={session}>
-			<div id={styles.basePage}>
-				<Navbar user={session.user} />
-				<div id={styles.content}>
-					<Categories />
-					<main className={styles.mainPage}>{renderMainContent(session)}</main>
-				</div>
-			</div>
+			<div>{renderMainContent(session)}</div>
 		</SessionContext.Provider>
 	);
 }

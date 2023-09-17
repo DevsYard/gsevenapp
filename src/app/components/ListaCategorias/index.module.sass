@@ -1,0 +1,19 @@
+@use '../../variables'
+  
+.listCategories
+  cursor: pointer
+  width: 90%
+  
+  & .summary
+    @include variables.focusStyle(variables.$secondary)     
+    font-weight: 600
+    list-style: none
+  & .ul
+    border-left: solid
+    border-bottom: solid
+    & li
+      list-style: none
+      & a
+        padding-left: 0.5rem
+        text-decoration: none
+        @include variables.focusStyle(variables.$secondary)

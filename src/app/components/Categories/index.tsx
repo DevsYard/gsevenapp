@@ -1,13 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import styles from '../../page.module.sass';
+import styles from './index.module.sass';
 import { useContext, useState } from 'react';
 import ListaCategorias from '../ListaCategorias';
 import Chart from '../Chart';
 import Favorites from '../Favorites';
 import User from '../User';
 import SessionContext from '@/app/contexts/sessionContext';
+import { Link } from 'phosphor-react';
 
 interface Item {
 	img: string;
@@ -62,6 +63,7 @@ export default function Categories() {
 				styles.functionBtnIn,
 				styles.functionBtnIn,
 			]);
+
 			setCards(options[0].alt);
 			setMenuMotion(styles.lista);
 		}

@@ -141,82 +141,8 @@
 .prodCreation
   padding: 1rem
 
-.categories
-  position: relative
-  display: flex
-  flex-direction: column
-  justify-content: flex-start
-  align-items: center
-  padding: 1rem
-  background: variables.$primary-shadow
-  min-height: calc(100vh - 100px)
-  & .optionsMenu
-    display: flex
-    justify-content: space-between
-    gap: 2rem
-    color: variables.$btnPrimary
-    padding-bottom: 2rem
-    z-index: 10
-    & .selection
-      @include variables.focusStyle(variables.$secondary)
-      cursor: pointer
-      display: flex
-      flex-direction: column
-      align-items: center
-      position: relative
-      & .functionBtnOff
-        @include variables.functionBtn(nameAnimationOff)
-        z-index: 0
-      & .functionBtnIn
-        @include variables.functionBtn(nameAnimationIn)
-        z-index: -1 
-     
-  & .divider
-    margin-top: 1rem
-    background: variables.$secondary
-    width: 80%
-    height: 2px
-    border-radius: 10px
-  & .search
-    position: relative
-    margin: 1rem
-    & .input
-      border-radius: 50px
-      cursor: pointer
-    & .imgSearch
-      position: absolute
-      right: 0.8rem
-      top: 0.3rem
-      cursor: pointer
 
-  & .listCategories
-    cursor: pointer
-    width: 90%
-    
-    & .summary
-      @include variables.focusStyle(variables.$secondary)     
-      font-weight: 600
-      list-style: none
-    & .ul
-      border-left: solid
-      border-bottom: solid
-      & li
-        list-style: none
-        & a
-          padding-left: 0.5rem
-          text-decoration: none
-          @include variables.focusStyle(variables.$secondary) 
 
-.menuMotion
-  display: flex
-  justify-content: center
-  width: 100%
-  & .menu
-    width: 100%
-  & .lista, & .chart, & .favorites, & .user
-    width: 100%
-  & .lista, & .favorites, & .user
-    padding: 0 2rem
 #menuCategories, #menuChart, #menuFavorites, #menuUser
   @include variables.menuMotion
 
