@@ -31,10 +31,9 @@
   @include variables.focusStyle(variables.$secondary)
   background: variables.$primary-shadow
   box-shadow: 2px 2px 5px variables.$shadow
-
-.promo
-  display: none
-
+  &[readonly]
+    background: #ccc
+    
 .radio
   display: flex
   align-items: center

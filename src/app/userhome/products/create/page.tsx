@@ -1,6 +1,7 @@
 'use client';
 
-import styles from '../../../page.module.sass';
+import style from '../../../page.module.sass';
+import styles from './page.module.sass';
 import { useContext, useState } from 'react';
 import requests from '../../../validations/axios.module';
 import SessionContext from '../../../contexts/sessionContext';
@@ -45,7 +46,7 @@ export default function CreateProduct() {
 
 	function handlePromo(e: any) {
 		if (e.target.value === 'tem promo') {
-			setPromo(styles.input);
+			setPromo(style.input);
 			setTemPromo(true);
 		} else {
 			setPromo(styles.promo);
@@ -88,28 +89,28 @@ export default function CreateProduct() {
 				>
 					<input
 						placeholder='Nome do produto'
-						className={styles.input}
+						className={style.input}
 						type='text'
 						name='productName'
 						onChange={handleProductName}
 					/>
 					<input
 						placeholder='Preço R$0,00'
-						className={styles.input}
+						className={style.input}
 						type='text'
 						name='price'
 						onChange={handlePrice}
 					/>
 					<textarea
 						placeholder='Descrição'
-						className={styles.input}
+						className={style.input}
 						name='description'
 						onChange={handleDescription}
 					/>
-					<div className={styles.checkerContainer}>
-						<label className={styles.radio} htmlFor='promoType'>
+					<div className={style.checkerContainer}>
+						<label className={style.radio} htmlFor='promoType'>
 							<input
-								className={styles.checkers}
+								className={style.checkers}
 								name='promoType'
 								type='radio'
 								value='não tem'
@@ -117,9 +118,9 @@ export default function CreateProduct() {
 							/>
 							Sem Promo
 						</label>
-						<label className={styles.radio} htmlFor='promoType'>
+						<label className={style.radio} htmlFor='promoType'>
 							<input
-								className={styles.checkers}
+								className={style.checkers}
 								name='promoType'
 								type='radio'
 								value='tem promo'
@@ -145,13 +146,13 @@ export default function CreateProduct() {
 					/>
 					<input
 						placeholder='URL da imagem'
-						className={styles.input}
+						className={style.input}
 						type='text'
 						name='img'
 						onChange={handleImage}
 					/>
 					<button
-						className={styles.inputBtn}
+						className={style.inputBtn}
 						type='button'
 						onClick={handleSubmit}
 					>
