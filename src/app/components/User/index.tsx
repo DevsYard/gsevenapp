@@ -14,12 +14,15 @@ export default function User(props: any) {
 		<SessionContext.Provider value={session}>
 			<div className={styles.user}>
 				<h3>Usuário</h3>
-				{session.admin && session.isLogged ? (
+				{session.admin ? (
 					<Admin />
-				) : session.user && session.isLogged ? (
+				) : !session.admin ? (
 					<Customer />
 				) : (
-					<>Área Logada</>
+					<>
+						<p>Área Logada</p>
+						<Link href='/signin'>Fazer Login</Link>
+					</>
 				)}
 			</div>
 		</SessionContext.Provider>
@@ -27,78 +30,22 @@ export default function User(props: any) {
 }
 
 function Admin() {
-	const [showProfile, setShowProfile] = useState(false);
-	const [showCreateProduct, setShowCreateProduct] = useState(false);
-	const [showEditProduct, setShowEditProduct] = useState(false);
-	const [showDeleteProduct, setShowDeleteProduct] = useState(false);
-	const [showSettings, setSSettings] = useState(false);
-
-	function handleProfile() {
-		setShowProfile(true);
-		setShowCreateProduct(false);
-		setShowEditProduct(false);
-		setShowDeleteProduct(false);
-		setSSettings(false);
-	}
-
-	function handleCreateProduct() {
-		setShowProfile(false);
-		setShowCreateProduct(true);
-		setShowEditProduct(false);
-		setShowDeleteProduct(false);
-		setSSettings(false);
-	}
-
-	function handleEditProduct() {
-		setShowProfile(false);
-		setShowCreateProduct(false);
-		setShowEditProduct(true);
-		setShowDeleteProduct(false);
-		setSSettings(false);
-	}
-
-	function handleDeleteProduct() {
-		setShowProfile(false);
-		setShowCreateProduct(false);
-		setShowEditProduct(false);
-		setShowDeleteProduct(true);
-		setSSettings(false);
-	}
-
-	function handleSettings() {
-		setShowProfile(false);
-		setShowCreateProduct(false);
-		setShowEditProduct(false);
-		setShowDeleteProduct(false);
-		setSSettings(true);
-	}
-
 	return (
 		<div className={styles.userSettings}>
 			<li>
-				<Link onClick={handleProfile} href='/userhome/profile'>
-					Perfil
-				</Link>
+				<Link href='/userhome/profile'>Perfil</Link>
 			</li>
 			<li>
-				<Link onClick={handleCreateProduct} href='/userhome/products/create'>
-					Adicionar Produto
-				</Link>
+				<Link href='/userhome/products/create'>Adicionar Produto</Link>
 			</li>
 			<li>
-				<Link onClick={handleEditProduct} href='/userhome/products/edit'>
-					Editar Produto
-				</Link>
+				<Link href='/userhome/products/edit'>Editar Produto</Link>
 			</li>
 			<li>
-				<Link onClick={handleDeleteProduct} href='/userhome/products/delete'>
-					Apagar Produto
-				</Link>
+				<Link href='/userhome/products/delete'>Apagar Produto</Link>
 			</li>
 			<li>
-				<Link onClick={handleSettings} href='/userhome/settings'>
-					Gerenciar
-				</Link>
+				<Link href='/userhome/settings'>Gerenciar</Link>
 			</li>
 			<li>
 				<Link href='/signin'>Sair</Link>
@@ -108,33 +55,16 @@ function Admin() {
 }
 
 function Customer() {
-	const [showProfile, setShowProfile] = useState(false);
-	const [showSettings, setSSettings] = useState(false);
-
-	function handleProfile() {
-		setShowProfile(true);
-		setSSettings(false);
-	}
-
-	function handleSettings() {
-		setShowProfile(false);
-		setSSettings(true);
-	}
-
 	return (
 		<div className={styles.userSettings}>
 			<li>
-				<Link onClick={handleProfile} href='/profile'>
-					Perfil
-				</Link>
+				<Link href='/userhome/profile'>Perfil</Link>
 			</li>
 			<li>
-				<Link onClick={handleSettings} href='/settings'>
-					Gerenciar
-				</Link>
+				<Link href='/userhome/settings'>Gerenciar</Link>
 			</li>
 			<li>
-				<Link href='/signin'>Sair</Link>
+				<Link href='/userhome/signin'>Sair</Link>
 			</li>
 		</div>
 	);

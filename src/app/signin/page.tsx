@@ -50,12 +50,15 @@ export default function SignIn() {
 					session.isLogged = res.data.auth;
 					session.user = username;
 					session.token = res.data.token;
+					session.userId = res.data.userId;
 					redirect('/userhome');
 				}
 			})
 			.catch((error: any) => {
-				const msg = error.response.data.message;
-				alert(msg);
+				if (error) {
+					const msg = error.response.data.message;
+					alert(msg);
+				}
 			});
 		return;
 	}

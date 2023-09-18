@@ -41,6 +41,7 @@ export default function SignIn() {
 	}
 
 	function handleSubmit(e: any) {
+		e.preventDefault();
 		if (password !== repeatPassword) {
 			alert('As senhas precisam ser iguais');
 			return;
@@ -55,6 +56,8 @@ export default function SignIn() {
 			username: username,
 			password: password,
 			admin: admin,
+			birth: '',
+			bio: '',
 		};
 
 		request
@@ -63,9 +66,12 @@ export default function SignIn() {
 				if (res.status === 201) {
 					redirect('/signin');
 				}
+				if (res.status === 409) {
+					alert(res);
+				}
 			})
 			.catch((error) => {
-				console.log(error);
+				alert(error.response.data.msg);
 			});
 	}
 
