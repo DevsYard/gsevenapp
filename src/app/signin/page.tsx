@@ -65,6 +65,7 @@ export default function SignIn() {
 
 	function handleUsername(e: ChangeEvent<HTMLInputElement>) {
 		setUsername(e.target.value);
+		console.log(e.target.value);
 	}
 	function handlePassword(e: ChangeEvent<HTMLInputElement>) {
 		setPassword(e.target.value);
@@ -72,7 +73,6 @@ export default function SignIn() {
 
 	function handleMostrarSenha(e: ChangeEvent<HTMLInputElement>) {
 		e.target.checked ? setMostraSenha('text') : setMostraSenha('password');
-		console.log(e);
 	}
 
 	useEffect(() => {

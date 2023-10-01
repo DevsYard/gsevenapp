@@ -27,7 +27,6 @@ export default function CreateProduct() {
 	}
 
 	function handlePromoPrice(e: any) {
-		console.log('PROMO PRICE', parseFloat(e.target.value));
 		setPromoPrice(parseFloat(e.target.value));
 	}
 
@@ -40,7 +39,6 @@ export default function CreateProduct() {
 	}
 
 	function handlePrice(e: any) {
-		console.log('PRICE', parseFloat(e.target.value));
 		setPrice(parseFloat(e.target.value));
 	}
 

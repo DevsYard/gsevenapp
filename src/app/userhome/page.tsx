@@ -25,10 +25,8 @@ export default function UserHome() {
 	const renderMainContent = (session: isLoggedIn) => {
 		const url = `${pathname}?${searchParams}`;
 
-		console.log('url: ', url);
-
 		if (url === 'userhome') {
-			return <Principal {...session} />;
+			return <Principal />;
 		} else if (url === `/favorites`) {
 			return <Favorites />;
 		} else if (url === `/products/create`) {
@@ -40,7 +38,7 @@ export default function UserHome() {
 		} else if (url === `/settings`) {
 			return <Settings />;
 		} else {
-			return <Principal {...session} />;
+			return <Principal />;
 		}
 	};
 

@@ -23,7 +23,6 @@ export default function Principal(pageProps: any) {
 		const request = requests();
 		request.get('/products').then((res: any) => {
 			setCards(res.data);
-			console.log(res.data);
 		});
 	}, []);
 
@@ -36,6 +35,7 @@ export default function Principal(pageProps: any) {
 			{cards.map((card) => (
 				<Card
 					key={card._id}
+					id={card._id}
 					productName={card.productName}
 					description={card.description}
 					productPrice={card.price}

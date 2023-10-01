@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import styles from '../../page.module.sass';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface Product {
+	id: string;
 	productName: string;
 	description?: string;
 	productPrice: number;
@@ -13,6 +15,7 @@ interface Product {
 }
 
 export default function Card({
+	id,
 	productName,
 	description,
 	productPrice,
@@ -58,16 +61,18 @@ export default function Card({
 	return (
 		<div className={styles.card}>
 			<div className={styles.descriptionContainer}>
-				<a href='product/detail'>
-					<Image
-						className={styles.itemPic}
-						src={img || ''}
-						alt={productName}
-						width={155}
-						height={155}
-						priority
-					/>
-				</a>
+				<Link href={`/userhome/product/detail/${id}`} legacyBehavior>
+					<a>
+						<Image
+							className={styles.itemPic}
+							src={img || ''}
+							alt={productName}
+							width={155}
+							height={155}
+							priority
+						/>
+					</a>
+				</Link>
 				<div onClick={() => handleFav()} className={styles.heart}>
 					<Image src={fav} alt='Favoritar' width={24} height={24} priority />
 				</div>
