@@ -14,21 +14,6 @@ export default function Profile() {
 	const [birth, setBirth] = useState('');
 	const [isEditing, setIsEditing] = useState(false);
 
-	function handleSubmit(e: any) {
-		e.preventDefault();
-		const user = {
-			...session,
-			bio: bio,
-			birth: birth,
-		};
-
-		console.log('user: ', user);
-
-		request.put('/profile', user).then((res) => {
-			console.log(res.data);
-		});
-	}
-
 	function handleEditClick() {
 		setIsEditing(true);
 	}
@@ -54,7 +39,7 @@ export default function Profile() {
 		};
 
 		request.put('/profile', user).then((res) => {
-			console.log(res.data);
+			alert(res.data.msg);
 		});
 
 		setIsEditing(false);

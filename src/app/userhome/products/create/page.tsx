@@ -27,8 +27,11 @@ export default function CreateProduct() {
 	}
 
 	function handlePromoPrice(e: any) {
-		console.log('PROMO PRICE', parseFloat(e.target.value));
-		setPromoPrice(parseFloat(e.target.value));
+		if (e.target.value !== undefined) {
+			setPromoPrice(parseFloat(e.target.value));
+		} else {
+			setPromoPrice(0);
+		}
 	}
 
 	function handleProductName(e: any) {
@@ -40,12 +43,7 @@ export default function CreateProduct() {
 	}
 
 	function handlePrice(e: any) {
-		console.log('PRICE', parseFloat(e.target.value));
 		setPrice(parseFloat(e.target.value));
-	}
-
-	function handlePromo(e: any) {
-		if (e.target.value === 'tem promo') {
 			setPromo(style.input);
 			setTemPromo(true);
 		} else {

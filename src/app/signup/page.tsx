@@ -27,7 +27,6 @@ export default function SignIn() {
 			: e.target.value === 'admin'
 			? setAdmin(true)
 			: alert('Escolha o tipo de conta');
-		console.log('É admin?', e.target.value);
 	}
 
 	function handleUsername(e: any) {

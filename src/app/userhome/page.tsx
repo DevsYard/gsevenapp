@@ -1,6 +1,7 @@
 'use client'
 
 import SessionContext from '@/app/contexts/sessionContext';
+import ChartContext from '@/app/contexts/chartContext';
 import { useContext } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Favorites from '../components/Favorites';
@@ -9,26 +10,20 @@ import CreateProduct from './products/create/page';
 import EditProduct from './products/edit/page';
 import Profile from './profile/page';
 import Settings from './settings/page';
-
-interface isLoggedIn {
-	isLogged: boolean;
-	user: string;
-	admin: boolean;
-	token: string;
-}
+import { IChartItem } from '@/types/product';
+import { isLoggedIn } from '@/types/logged';
 
 export default function UserHome() {
 	const session = useContext(SessionContext);
+	const chart = useContext(ChartContext);
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
 	const renderMainContent = (session: isLoggedIn) => {
 		const url = `${pathname}?${searchParams}`;
 
-		console.log('url: ', url);
-
 		if (url === 'userhome') {
-			return <Principal {...session} />;
+			return <Principal />;
 		} else if (url === `/favorites`) {
 			return <Favorites />;
 		} else if (url === `/products/create`) {
@@ -40,13 +35,12 @@ export default function UserHome() {
 		} else if (url === `/settings`) {
 			return <Settings />;
 		} else {
-			return <Principal {...session} />;
+			return <Principal />;
 		}
 	};
-
-	return (
-		<SessionContext.Provider value={session}>
-			<div>{renderMainContent(session)}</div>
+			<ChartContext.Provider value={chart}>
+				<div>{renderMainContent(session)}</div>
+			</ChartContext.Provider>
 		</SessionContext.Provider>
 	);
 }

@@ -72,7 +72,6 @@ export default function SignIn() {
 
 	function handleMostrarSenha(e: ChangeEvent<HTMLInputElement>) {
 		e.target.checked ? setMostraSenha('text') : setMostraSenha('password');
-		console.log(e);
 	}
 
 	useEffect(() => {

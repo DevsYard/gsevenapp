@@ -1,7 +1,9 @@
+import DeleteSelection from '@/app/components/DeleteSelection';
+
 export default function DeleteProduct() {
 	return (
 		<div>
-			<h1>Apagar produto</h1>
+			<DeleteSelection />
 		</div>
 	);
 }
