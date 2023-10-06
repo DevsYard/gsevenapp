@@ -56,6 +56,9 @@
   background: variables.$secondary
   color: variables.$primary-shadow
   @include variables.focusStyle(variables.$shadow)
+#deleteBtn
+  padding: 0.5rem
+  width: fit-content
 
 .inputGoogle
   @include variables.btn(1rem, true, false)
@@ -89,6 +92,11 @@
   height: 1rem
   margin-inline: 0.5rem
   cursor: pointer  
+
+.checkerBtn
+  display: flex
+  flex-direction: column
+  justify-content: center
 
 #basePage
   display: flex
@@ -162,9 +170,14 @@
   & .quantTable
     text-align: center
 
+.details
+  width: 60% !important
+  height: fit-content
+
 .descriptionContainer
   display: flex
   gap: 1rem
+
 
 .cardsHeader
   display: flex
@@ -222,6 +235,10 @@
       filter: brightness(0.8)
   & .quantidade
     padding: 0 0.5rem
+
+// .deleteProductContainer
+//   display: flex
+//   justify-content: space-between
 
 .user
   padding-block: 0.5rem

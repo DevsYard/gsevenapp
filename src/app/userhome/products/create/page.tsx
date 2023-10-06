@@ -27,7 +27,11 @@ export default function CreateProduct() {
 	}
 
 	function handlePromoPrice(e: any) {
-		setPromoPrice(parseFloat(e.target.value));
+		if (e.target.value !== undefined) {
+			setPromoPrice(parseFloat(e.target.value));
+		} else {
+			setPromoPrice(0);
+		}
 	}
 
 	function handleProductName(e: any) {

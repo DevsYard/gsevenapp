@@ -5,28 +5,20 @@ import Link from 'next/link'
 import { string } from 'yup';
 import { useEffect, useState } from 'react';
 import requests from '../../validations/axios.module';
-
-interface Product {
-	id: number;
-	produto: string;
-	quantidade: number;
-	valor: number;
-	total: number;
-}
+import { IChartItem } from '@/types/products';
 
 export default function Chart() {
-	const [data, setData] = useState<Product[]>([]);
+	const [data, setData] = useState<IChartItem[]>([]);
 
 	const [total, setTotal] = useState(0);
 
 	useEffect(() => {
-		// Carrega os dados do banco de dados
 		const request = requests();
-		request.get('/products').then((response) => setData(response.data));
+		request.get('/chart/:id').then((response) => setData(response.data));
 
 		const dados = data;
 		for (let i = 0; i < dados.length; i++) {
-			setTotal(total + dados[i].total);
+			setTotal(total + dados[i].valorTotal);
 		}
 	}, [data, total]);
 
@@ -45,12 +37,12 @@ export default function Chart() {
 				</thead>
 				<tbody>
 					{data.map((product) => (
-						<tr key={product.id}>
-							<td>{product.produto}</td>
-							<td className={styles.quantTable}>{product.quantidade}</td>
+						<tr key={product.produto.id}>
+							<td>{product.produto.productName}</td>
+							<td className={styles.quantTable}>{product.unidades}</td>
 							<td>
-								{product.total !== undefined
-									? `R$${product.total.toFixed(2).replace('.', ',')}`
+								{product.valorTotal !== undefined
+									? `R$${product.valorTotal.toFixed(2).replace('.', ',')}`
 									: '--	'}
 							</td>
 						</tr>

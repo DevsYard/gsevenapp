@@ -64,7 +64,7 @@ function Customer() {
 				<Link href='/userhome/settings'>Gerenciar</Link>
 			</li>
 			<li>
-				<Link href='/userhome/signin'>Sair</Link>
+				<Link href='/signin'>Sair</Link>
 			</li>
 		</div>
 	);

@@ -16,12 +16,12 @@ interface Product {
 	img: string;
 }
 
-export default function Principal(pageProps: any) {
+export default function Principal() {
 	const [cards, setCards] = useState<Product[]>([]);
 
 	useEffect(() => {
 		const request = requests();
-		request.get('/products').then((res: any) => {
+		request.get('/products').then((res) => {
 			setCards(res.data);
 		});
 	}, []);

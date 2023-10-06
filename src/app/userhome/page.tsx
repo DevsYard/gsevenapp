@@ -1,6 +1,7 @@
 'use client'
 
 import SessionContext from '@/app/contexts/sessionContext';
+import ChartContext from '@/app/contexts/chartContext';
 import { useContext } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Favorites from '../components/Favorites';
@@ -9,16 +10,11 @@ import CreateProduct from './products/create/page';
 import EditProduct from './products/edit/page';
 import Profile from './profile/page';
 import Settings from './settings/page';
-
-interface isLoggedIn {
-	isLogged: boolean;
-	user: string;
-	admin: boolean;
-	token: string;
-}
+import { isLoggedIn, IChartItem } from '@/types/logged';
 
 export default function UserHome() {
 	const session = useContext(SessionContext);
+	const chart = useContext(ChartContext);
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
@@ -44,7 +40,9 @@ export default function UserHome() {
 
 	return (
 		<SessionContext.Provider value={session}>
-			<div>{renderMainContent(session)}</div>
+			<ChartContext.Provider value={chart}>
+				<div>{renderMainContent(session)}</div>
+			</ChartContext.Provider>
 		</SessionContext.Provider>
 	);
 }
