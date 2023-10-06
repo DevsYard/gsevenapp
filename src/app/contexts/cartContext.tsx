@@ -1,7 +1,7 @@
 import { createContext } from 'react';
-import { IChartItem } from '@/types/logged';
+import { ICartItem } from '@/types/products';
 
-const chart: IChartItem[] = [
+const cart: ICartItem[] = [
 	{
 		produto: {
 			id: '',
@@ -19,6 +19,6 @@ const chart: IChartItem[] = [
 	},
 ];
 
-const ChartContext = createContext<IChartItem[]>(chart);
+const CartContext = createContext<ICartItem[]>(cart);
 
-export default ChartContext;
+export default CartContext;

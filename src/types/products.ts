@@ -9,7 +9,7 @@ export interface Product {
 	img: string;
 }
 
-export interface IChartItem {
+export interface ICartItem {
 	produto: Product;
 	unidades: number;
 	valorUnitario: number;

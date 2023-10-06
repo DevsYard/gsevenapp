@@ -4,7 +4,7 @@ import Image from 'next/image'
 import styles from './index.module.sass';
 import { useContext, useState } from 'react';
 import ListaCategorias from '../ListaCategorias';
-import Chart from '../Chart';
+import Cart from '../Cart';
 import Favorites from '../Favorites';
 import User from '../User';
 import SessionContext from '@/app/contexts/sessionContext';
@@ -35,7 +35,7 @@ export default function Categories() {
 			text: 'Categoria',
 		},
 		{
-			img: '/chart.svg',
+			img: '/cart.svg',
 			alt: 'carrinho',
 			text: 'Carrinho',
 		},
@@ -77,7 +77,7 @@ export default function Categories() {
 				styles.functionBtnIn,
 			]);
 			setCards(options[1].alt);
-			setMenuMotion(styles.chart);
+			setMenuMotion(styles.cart);
 		}
 		if (alt === 'favoritos') {
 			setAnimation([
@@ -241,8 +241,8 @@ export default function Categories() {
 					<div id={menuMotion} className={styles.menu}>
 						{menuMotion === styles.lista ? (
 							<ListaCategorias />
-						) : menuMotion === styles.chart ? (
-							<Chart />
+						) : menuMotion === styles.cart ? (
+							<Cart />
 						) : menuMotion === styles.favorites && isLogged ? (
 							<Favorites />
 						) : menuMotion === styles.user && isLogged ? (
