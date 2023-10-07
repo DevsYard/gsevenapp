@@ -63,6 +63,7 @@ export default function SignIn() {
 			.post('/signup', data)
 			.then((res) => {
 				if (res.status === 201) {
+					alert(res.data.msg);
 					redirect('/signin');
 				}
 				if (res.status === 409) {

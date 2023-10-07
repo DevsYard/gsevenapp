@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import styles from '../../page.module.sass';
-import { Product } from '@/types/products';
-import requests from '../../validations/axios.module';
+import { ExtendedProduct } from '@/types/products';
 
-export default function ContadorCompras(product: any) {
+export default function ContadorCompras({
+	product,
+}: {
+	product: ExtendedProduct;
+}): JSX.Element {
 	const [price, setPrice] = useState<number>(0);
 	const [unidade, setUnidade] = useState<number>(0);
 	const [quantidade, setQuantidade] = useState<number>(0);
@@ -19,7 +22,7 @@ export default function ContadorCompras(product: any) {
 	}
 
 	useEffect(() => {
-		if (product.id !== '') {
+		if (product.key !== undefined) {
 			if (product.promo) {
 				if (quantidade >= product.condition) {
 					setUnidade(product.promoPrice);
@@ -35,7 +38,7 @@ export default function ContadorCompras(product: any) {
 
 	return (
 		<>
-			<div className={styles.buyContainer} id={product.id}>
+			<div className={styles.buyContainer} key={product.key}>
 				<div className={styles.btnContainer}>
 					<button className={styles.btnCompra} onClick={handleQuantidade}>
 						-
@@ -46,7 +49,7 @@ export default function ContadorCompras(product: any) {
 					</button>
 				</div>
 				<h2>R${price.toFixed(2)}</h2>
-				<h6>Preço unitário: R${unidade}</h6>
+				<h6>Preço unitário: R${unidade.toFixed(2)}</h6>
 			</div>
 		</>
 	);

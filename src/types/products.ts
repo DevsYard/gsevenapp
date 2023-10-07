@@ -1,3 +1,9 @@
+export type ExtendedProduct = Product & ProductKey;
+
+type ProductKey = {
+	key?: string;
+};
+
 export interface Product {
 	id: string;
 	productName: string;

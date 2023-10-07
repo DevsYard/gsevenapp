@@ -52,8 +52,8 @@ export default function DeleteSelection() {
 	function reduceDesc(description: string) {
 		if (description) {
 			const wordsArray = description.split(' ');
-			const first10Words = wordsArray.slice(0, 10);
-			const result = first10Words.join(' ');
+			const first20Words = wordsArray.slice(0, 20);
+			const result = first20Words.join(' ');
 			return result + '...';
 		}
 	}
