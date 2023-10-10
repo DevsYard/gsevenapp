@@ -57,6 +57,7 @@ export default function SignIn() {
 			admin: admin,
 			birth: '',
 			bio: '',
+			name: '',
 		};
 
 		request

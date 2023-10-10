@@ -34,7 +34,6 @@ export default function DeleteSelection() {
 		if (checked) {
 			setDeleteProduct(id);
 		}
-		console.log(id, checked);
 	}
 
 	function handleRequest(product: string) {

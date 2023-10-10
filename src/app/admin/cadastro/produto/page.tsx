@@ -9,7 +9,7 @@ export default function Produto() {
 
 	return (
 		<SessionContext.Provider value={session}>
-			<Navbar user={session.user} />
+			<Navbar user={session.user} nome={session.name} />
 			<h1>Cadastro de Produtos</h1>
 		</SessionContext.Provider>
 	);

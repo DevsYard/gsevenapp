@@ -1,5 +1,5 @@
 @use '../../variables'
-  
+
 .categories
   position: relative
   display: flex
@@ -78,3 +78,13 @@
     width: 100%
   & .lista, & .favorites, & .user
     padding: 0 2rem
+
+@media (max-width: 750px)
+  .categories
+    position: absolute
+    z-index: 200
+  #opened
+    left: 0
+  #closed
+    left: -100%
+

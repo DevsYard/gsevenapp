@@ -51,6 +51,7 @@ export default function SignIn() {
 					session.user = username;
 					session.token = res.data.token;
 					session.userId = res.data.userId;
+					session.name = res.data.name;
 					redirect('/userhome');
 				}
 			})
@@ -118,6 +119,7 @@ export default function SignIn() {
 						Mostrar senha
 						<input
 							className={styles.checkbox}
+							name='adminCheckbox'
 							type='checkbox'
 							onChange={(event) => handleMostrarSenha(event)}
 						/>
