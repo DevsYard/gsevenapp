@@ -2,13 +2,12 @@
 
 import Image from 'next/image'
 import styles from './index.module.sass';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ListaCategorias from '../ListaCategorias';
-import Chart from '../Chart';
+import Cart from '../Cart';
 import Favorites from '../Favorites';
 import User from '../User';
 import SessionContext from '@/app/contexts/sessionContext';
-import { Link } from 'phosphor-react';
 
 interface Item {
 	img: string;
@@ -16,7 +15,7 @@ interface Item {
 	text: string;
 }
 
-export default function Categories() {
+export default function Categories(props: any) {
 	const [animation, setAnimation] = useState([
 		styles.functionBtnOff,
 		styles.functionBtnIn,
@@ -25,6 +24,7 @@ export default function Categories() {
 	]);
 	const [pageAnimate, setPageAnimate] = useState(styles.cards);
 	const [cards, setCards] = useState('categoria');
+	const [menuPos, setMenuPos] = useState('styles.closed');
 	const [query, setQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 
@@ -35,7 +35,7 @@ export default function Categories() {
 			text: 'Categoria',
 		},
 		{
-			img: '/chart.svg',
+			img: '/cart.svg',
 			alt: 'carrinho',
 			text: 'Carrinho',
 		},
@@ -51,9 +51,10 @@ export default function Categories() {
 		},
 	];
 
-	const [menuMotion, setMenuMotion] = useState(styles.lista);
+	const [menuMotion, setMenuMotion] = useState('styles.lista');
 
-	const { isLogged, admin, user, token, userId } = useContext(SessionContext);
+	const { isLogged, admin, user, token, userId, name } =
+		useContext(SessionContext);
 
 	function animate(e: any) {
 		let alt = e.target.alt;
@@ -77,7 +78,7 @@ export default function Categories() {
 				styles.functionBtnIn,
 			]);
 			setCards(options[1].alt);
-			setMenuMotion(styles.chart);
+			setMenuMotion(styles.cart);
 		}
 		if (alt === 'favoritos') {
 			setAnimation([
@@ -169,9 +170,17 @@ export default function Categories() {
 		console.log(query, results);
 	}
 
+	useEffect(() => {
+		props.menu ? setMenuPos('styles.opened') : setMenuPos('styles.closed');
+
+		console.log('MENU: ', props.menu, menuPos);
+	}, [props.menu, menuPos]);
+
 	return (
-		<SessionContext.Provider value={{ isLogged, admin, user, token, userId }}>
-			<div className={styles.categories}>
+		<SessionContext.Provider
+			value={{ isLogged, admin, user, token, userId, name }}
+		>
+			<div id={menuPos} className={styles.categories}>
 				<nav className={styles.optionsMenu}>
 					<div className={styles.selection}>
 						<Image
@@ -241,8 +250,8 @@ export default function Categories() {
 					<div id={menuMotion} className={styles.menu}>
 						{menuMotion === styles.lista ? (
 							<ListaCategorias />
-						) : menuMotion === styles.chart ? (
-							<Chart />
+						) : menuMotion === styles.cart ? (
+							<Cart />
 						) : menuMotion === styles.favorites && isLogged ? (
 							<Favorites />
 						) : menuMotion === styles.user && isLogged ? (

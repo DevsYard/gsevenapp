@@ -57,12 +57,14 @@ export default function SignIn() {
 			admin: admin,
 			birth: '',
 			bio: '',
+			name: '',
 		};
 
 		request
 			.post('/signup', data)
 			.then((res) => {
 				if (res.status === 201) {
+					alert(res.data.msg);
 					redirect('/signin');
 				}
 				if (res.status === 409) {

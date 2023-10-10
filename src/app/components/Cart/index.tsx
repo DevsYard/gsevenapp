@@ -1,20 +1,20 @@
-'use client'
-import Image from 'next/image'
-import styles from '../../page.module.sass'
-import Link from 'next/link'
+'use client';
+import Image from 'next/image';
+import styles from '../../page.module.sass';
+import Link from 'next/link';
 import { string } from 'yup';
 import { useEffect, useState } from 'react';
 import requests from '../../validations/axios.module';
 import { IChartItem } from '@/types/products';
 
-export default function Chart() {
+export default function Cart() {
 	const [data, setData] = useState<IChartItem[]>([]);
 
 	const [total, setTotal] = useState(0);
 
 	useEffect(() => {
 		const request = requests();
-		request.get('/chart/:id').then((response) => setData(response.data));
+		request.get('/cart/:id').then((response) => setData(response.data));
 
 		const dados = data;
 		for (let i = 0; i < dados.length; i++) {

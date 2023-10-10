@@ -12,6 +12,7 @@ export default function Profile() {
 
 	const [bio, setBio] = useState('');
 	const [birth, setBirth] = useState('');
+	const [name, setName] = useState('');
 	const [isEditing, setIsEditing] = useState(false);
 
 	function handleEditClick() {
@@ -26,6 +27,10 @@ export default function Profile() {
 		setBirth(data || '');
 	};
 
+	const handleName = (data: string) => {
+		setName(data || '');
+	};
+
 	function dateConverter(data: string) {
 		const formatedDate = data.substring(0, 10);
 		return formatedDate;
@@ -36,6 +41,7 @@ export default function Profile() {
 			...session,
 			bio: bio,
 			birth: birth,
+			name: name,
 		};
 
 		request.put('/profile', user).then((res) => {
@@ -55,6 +61,7 @@ export default function Profile() {
 				handleBio(res.data.bio);
 				const birth = dateConverter(res.data.birth);
 				handleBirth(birth);
+				handleName(res.data.name);
 			});
 		}
 	}, [request, session, isEditing]);
@@ -87,6 +94,14 @@ export default function Profile() {
 								onChange={(e) => setBirth(e.target.value)}
 								value={birth}
 							/>
+							<input
+								placeholder='Nome'
+								className={styles.input}
+								type='text'
+								name='nome'
+								onChange={(e) => setName(e.target.value)}
+								value={name}
+							/>
 							<textarea
 								placeholder='Bio'
 								className={styles.input}
@@ -110,6 +125,14 @@ export default function Profile() {
 								className={styles.input}
 								name='bio'
 								value={bio}
+								readOnly
+							/>
+							<input
+								placeholder='Nome'
+								className={styles.input}
+								type='text'
+								name='name'
+								value={name}
 								readOnly
 							/>
 						</>

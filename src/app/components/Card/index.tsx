@@ -8,19 +8,7 @@ import ContadorCompras from '../ContadorCompras';
 export default function Card(product: Product) {
 	const [fav, setFav] = useState<string>('/favorites.svg');
 	const [desc, setDesc] = useState<string>('');
-	// const [price, setPrice] = useState<number>(0);
-	// const [unidade, setUnidade] = useState<number>(0);
-	// const [quantidade, setQuantidade] = useState<number>(0);
-
-	// function handleQuantidade(e: any) {
-	// 	if (e.target.innerHTML === '+') {
-	// 		setQuantidade(quantidade + 1);
-	// 	} else {
-	// 		if (quantidade !== 0) {
-	// 			setQuantidade(quantidade - 1);
-	// 		}
-	// 	}
-	// }
+	const [key, setKey] = useState<string>('');
 
 	function handleFav() {
 		if (fav === '/favorites.svg') {
@@ -33,24 +21,14 @@ export default function Card(product: Product) {
 	}
 
 	useEffect(() => {
+		setKey(product.id);
 		if (product.description) {
 			const wordsArray = product.description.split(' ');
 			const first20Words = wordsArray.slice(0, 20);
 			const result = first20Words.join(' ');
 			setDesc(result + '...');
 		}
-	}, [desc, product.description]);
-
-	// useEffect(() => {
-	// 	if (product.promo) {
-	// 		if (quantidade >= product.condition) {
-	// 			setUnidade(product.promoPrice);
-	// 		} else {
-	// 			setUnidade(product.productPrice);
-	// 		}
-	// 	} else setUnidade(product.productPrice);
-	// 	setPrice(quantidade * unidade);
-	// }, [quantidade, unidade, product]);
+	}, [desc, product]);
 
 	return (
 		<div className={styles.card}>
@@ -73,20 +51,7 @@ export default function Card(product: Product) {
 					<p>{desc}</p>
 				</div>
 			</div>
-			{/* <div className={styles.buyContainer}>
-				<div className={styles.btnContainer}>
-					<button className={styles.btnCompra} onClick={handleQuantidade}>
-						-
-					</button>
-					<div className={styles.quantidade}>{quantidade}</div>
-					<button className={styles.btnCompra} onClick={handleQuantidade}>
-						+
-					</button>
-				</div>
-				<h2>R${price.toFixed(2)}</h2>
-				<h6>Preço unitário: R${unidade.toFixed(2)}</h6>
-			</div> */}
-			<ContadorCompras product={product} />
+			<ContadorCompras product={{ key, ...product }} />
 		</div>
 	);
 }

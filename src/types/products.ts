@@ -1,3 +1,9 @@
+export type ExtendedProduct = Product & ProductKey;
+
+type ProductKey = {
+	key?: string;
+};
+
 export interface Product {
 	id: string;
 	productName: string;
@@ -9,7 +15,7 @@ export interface Product {
 	img: string;
 }
 
-export interface IChartItem {
+export interface ICartItem {
 	produto: Product;
 	unidades: number;
 	valorUnitario: number;

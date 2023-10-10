@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styles from '../page.module.sass';
 import SessionContext from '../contexts/sessionContext';
 import Navbar from '../components/Navbar';
@@ -17,12 +17,19 @@ export default function UserHomeLayout({
 	children: React.ReactNode;
 }) {
 	const session = useContext(SessionContext);
+
+	const [data, setData] = useState(false);
+
+	const menuData = (newData: boolean) => {
+		setData(newData);
+	};
+
 	return (
 		<SessionContext.Provider value={session}>
 			<div id={styles.basePage}>
-				<Navbar user={session.user} />
+				<Navbar user={session.user} nome={session.name} menuInfo={menuData} />
 				<div id={styles.content}>
-					<Categories />
+					<Categories menu={data} />
 					<main className={styles.mainPage}>{children}</main>
 				</div>
 			</div>

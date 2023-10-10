@@ -1,15 +1,17 @@
-import Navbar from '@/app/components/Navbar'
-import Image from 'next/image'
-import styles from '../../page.module.sass'
+'use client';
+
+import Navbar from '@/app/components/Navbar';
+import Image from 'next/image';
+import styles from '../../page.module.sass';
 import SessionContext from '../../../contexts/sessionContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 export default function Funcionarios() {
-	const { isLogged, user, admin, token } = useContext(SessionContext);
+	const session = useContext(SessionContext);
 
 	return (
-		<SessionContext.Provider value={{ isLogged, user, admin, token }}>
-			<Navbar user={user} />
+		<SessionContext.Provider value={session}>
+			<Navbar nome={session.name} user={session.user} />
 			<h1>Cadastro de funcionario</h1>
 		</SessionContext.Provider>
 	);

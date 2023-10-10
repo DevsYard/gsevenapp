@@ -1,7 +1,7 @@
 'use client'
 
 import SessionContext from '@/app/contexts/sessionContext';
-import ChartContext from '@/app/contexts/chartContext';
+import CartContext from '@/app/contexts/cartContext';
 import { useContext } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Favorites from '../components/Favorites';
@@ -10,12 +10,12 @@ import CreateProduct from './products/create/page';
 import EditProduct from './products/edit/page';
 import Profile from './profile/page';
 import Settings from './settings/page';
-import { IChartItem } from '@/types/product';
+import { ICartItem } from '@/types/products';
 import { isLoggedIn } from '@/types/logged';
 
 export default function UserHome() {
 	const session = useContext(SessionContext);
-	const chart = useContext(ChartContext);
+	const cart = useContext(CartContext);
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
@@ -27,7 +27,7 @@ export default function UserHome() {
 		} else if (url === `/favorites`) {
 			return <Favorites />;
 		} else if (url === `/products/create`) {
-			return <CreateProduct />;
+			return <CreateProduct />
 		} else if (url === `/products/edit`) {
 			return <EditProduct />;
 		} else if (url === `/profile`) {
@@ -38,9 +38,12 @@ export default function UserHome() {
 			return <Principal />;
 		}
 	};
-			<ChartContext.Provider value={chart}>
+
+	return (
+		<SessionContext.Provider value={session}>
+			<CartContext.Provider value={cart}>
 				<div>{renderMainContent(session)}</div>
-			</ChartContext.Provider>
+			</CartContext.Provider>
 		</SessionContext.Provider>
 	);
 }
