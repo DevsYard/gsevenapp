@@ -44,6 +44,10 @@ export default function CreateProduct() {
 
 	function handlePrice(e: any) {
 		setPrice(parseFloat(e.target.value));
+	}
+
+	function handlePromo(e: any) {
+		if (e.target.value === 'tem promo') {
 			setPromo(style.input);
 			setTemPromo(true);
 		} else {
