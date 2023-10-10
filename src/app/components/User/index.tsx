@@ -1,12 +1,12 @@
 'use client';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styles from '../../page.module.sass';
 import Link from 'next/link';
 import SessionContext from '../../contexts/sessionContext';
 import useUserType from '@/app/hooks/useUserType';
 
-export default function User() {
+export default function User(props: any) {
 	const session = useContext(SessionContext);
 	const { userType } = useUserType();
 
@@ -14,12 +14,15 @@ export default function User() {
 		<SessionContext.Provider value={session}>
 			<div className={styles.user}>
 				<h3>Usuário</h3>
-				{session.admin && session.isLogged ? (
+				{session.admin ? (
 					<Admin />
-				) : session.user && session.isLogged ? (
+				) : !session.admin ? (
 					<Customer />
 				) : (
-					<>Área Logada</>
+					<>
+						<p>Área Logada</p>
+						<Link href='/signin'>Fazer Login</Link>
+					</>
 				)}
 			</div>
 		</SessionContext.Provider>
@@ -30,22 +33,22 @@ function Admin() {
 	return (
 		<div className={styles.userSettings}>
 			<li>
-				<a href='/profile'>Perfil</a>
+				<Link href='/userhome/profile'>Perfil</Link>
 			</li>
 			<li>
-				<a href='/products/create'>Adicionar Produto</a>
+				<Link href='/userhome/products/create'>Adicionar Produto</Link>
 			</li>
 			<li>
-				<a href='/products/edit'>Editar Produto</a>
+				<Link href='/userhome/products/edit'>Editar Produto</Link>
 			</li>
 			<li>
-				<a href='/products/delete'>Apagar Produto</a>
+				<Link href='/userhome/products/delete'>Apagar Produto</Link>
 			</li>
 			<li>
-				<a href='/settings'>Gerenciar</a>
+				<Link href='/userhome/settings'>Gerenciar</Link>
 			</li>
 			<li>
-				<a href='/signin'>Sair</a>
+				<Link href='/signin'>Sair</Link>
 			</li>
 		</div>
 	);
@@ -55,13 +58,13 @@ function Customer() {
 	return (
 		<div className={styles.userSettings}>
 			<li>
-				<a href='/profile'>Perfil</a>
+				<Link href='/userhome/profile'>Perfil</Link>
 			</li>
 			<li>
-				<a href='/settings'>Gerenciar</a>
+				<Link href='/userhome/settings'>Gerenciar</Link>
 			</li>
 			<li>
-				<a href='/signin'>Sair</a>
+				<Link href='/signin'>Sair</Link>
 			</li>
 		</div>
 	);

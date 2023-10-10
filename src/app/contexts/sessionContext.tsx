@@ -5,11 +5,17 @@ interface isLoggedIn {
 	user: string;
 	admin: boolean;
 	token: string;
+	userId: string;
+	birth?: string;
+	bio?: string;
+	name: string;
 }
 
 const initialSession: isLoggedIn = {
 	isLogged: false,
+	userId: '',
 	user: '',
+	name: '',
 	admin: false,
 	token: '',
 };

@@ -27,7 +27,6 @@ export default function SignIn() {
 			: e.target.value === 'admin'
 			? setAdmin(true)
 			: alert('Escolha o tipo de conta');
-		console.log('É admin?', e.target.value);
 	}
 
 	function handleUsername(e: any) {
@@ -41,6 +40,7 @@ export default function SignIn() {
 	}
 
 	function handleSubmit(e: any) {
+		e.preventDefault();
 		if (password !== repeatPassword) {
 			alert('As senhas precisam ser iguais');
 			return;
@@ -55,17 +55,24 @@ export default function SignIn() {
 			username: username,
 			password: password,
 			admin: admin,
+			birth: '',
+			bio: '',
+			name: '',
 		};
 
 		request
 			.post('/signup', data)
 			.then((res) => {
 				if (res.status === 201) {
+					alert(res.data.msg);
 					redirect('/signin');
+				}
+				if (res.status === 409) {
+					alert(res);
 				}
 			})
 			.catch((error) => {
-				console.log(error);
+				alert(error.response.data.msg);
 			});
 	}
 
