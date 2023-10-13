@@ -8,10 +8,17 @@ import { useContext, useState } from 'react';
 
 export default function Funcionarios() {
 	const session = useContext(SessionContext);
+	const [data, setData] = useState(false);
+
+	const menuData = (newData: boolean) => {
+		setData(newData);
+		return data;
+	};
+
 
 	return (
 		<SessionContext.Provider value={session}>
-			<Navbar nome={session.name} user={session.user} />
+			<Navbar nome={session.name} user={session.user} menuInfo={menuData} />
 			<h1>Cadastro de funcionario</h1>
 		</SessionContext.Provider>
 	);

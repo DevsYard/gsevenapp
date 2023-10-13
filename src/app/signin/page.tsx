@@ -5,7 +5,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import Snackbar from '@mui/material/Snackbar';
+// import Snackbar from '@mui/material/Snackbar';
+// import useUserType from '../hooks/useUserType';
 import Image from 'next/image';
 import styles from '../page.module.sass';
 import Link from 'next/link';
@@ -13,7 +14,6 @@ import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import requests from '../validations/axios.module';
 import { redirect } from 'next/navigation';
 import SessionContext from '../contexts/sessionContext';
-import useUserType from '../hooks/useUserType';
 
 interface Data {
 	username: string;
@@ -52,6 +52,7 @@ export default function SignIn() {
 					session.token = res.data.token;
 					session.userId = res.data.userId;
 					session.name = res.data.name;
+					session.avatar = res.data.avatar;
 					redirect('/userhome');
 				}
 			})

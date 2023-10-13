@@ -6,4 +6,5 @@ export interface isLoggedIn {
 	userId?: string;
 	birth?: string;
 	bio?: string;
+	avatar?: string;
 }

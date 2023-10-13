@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import styles from '../../page.module.sass'
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 export default function Navbar(props: any) {
 	const [arrow, setArrow] = useState('./arrowRight.svg');
@@ -19,19 +19,28 @@ export default function Navbar(props: any) {
 		props.menuInfo(menuOpen);
 	}
 
+	const [avatar, setAvatar] = useState('/profilepic.jpg');
+
+	useEffect(() => {
+		props.avatar === ''
+			? setAvatar('/profilepic.jpg')
+			: setAvatar(props.avatar);
+		console.log(props.avatar);
+	}, [props.avatar]);
+
 	return (
 		<nav className={styles.nav}>
 			<div className={styles.profile}>
 				<div className={styles.picture}>
 					<Image
-						src='/profilepic.jpg'
+						src={avatar}
 						alt='Foto de perfil'
 						width={73}
 						height={73}
 						priority
 					/>
 				</div>
-				<div className={styles.online}></div>
+				{/* <div className={styles.online}></div> */}
 				<div className={styles.welcome}>
 					<p>Olá, {props.nome === '' ? props.user : props.nome}</p>
 					<p>No que podemos ajudar?</p>
@@ -40,7 +49,7 @@ export default function Navbar(props: any) {
 			<Image
 				className={styles.logo}
 				src='/Logo.svg'
-				alt='Foto de perfil'
+				alt='Logo'
 				width={73}
 				height={73}
 				priority
