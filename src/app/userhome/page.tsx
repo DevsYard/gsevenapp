@@ -27,7 +27,7 @@ export default function UserHome() {
 		} else if (url === `/favorites`) {
 			return <Favorites />;
 		} else if (url === `/products/create`) {
-			return <CreateProduct />;
+			return <CreateProduct />
 		} else if (url === `/products/edit`) {
 			return <EditProduct />;
 		} else if (url === `/profile`) {
