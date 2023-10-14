@@ -9,6 +9,7 @@ import Image from 'next/image';
 import ContadorCompras from '@/app/components/ContadorCompras';
 import SessionContext from '@/app/contexts/sessionContext';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Details(id: any) {
 	const [product, setProduct] = useState<ExtendedProduct>({
@@ -60,7 +61,7 @@ export default function Details(id: any) {
 	}
 
 	function handleFullEdit() {
-		redirect(`/products/edit/${id['params']['id']}`);
+		redirect(`/userhome/product/edit/${id['params']['id']}`);
 	}
 
 	function handleSave() {
@@ -150,9 +151,12 @@ export default function Details(id: any) {
 							<button className={styles.inputBtn} onClick={handleSave}>
 								Salvar
 							</button>
-							<button className={styles.inputBtn} onClick={handleFullEdit}>
-								Editar completo
-							</button>
+							<Link
+								className={styles.inputBtn}
+								href={`/userhome/product/edit/${id['params']['id']}`}
+							>
+								Editar Completo
+							</Link>
 						</div>
 					</>
 				) : (

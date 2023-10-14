@@ -5,8 +5,6 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-// import Snackbar from '@mui/material/Snackbar';
-// import useUserType from '../hooks/useUserType';
 import Image from 'next/image';
 import styles from '../page.module.sass';
 import Link from 'next/link';

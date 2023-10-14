@@ -9,6 +9,7 @@ export default function Card(product: Product) {
 	const [fav, setFav] = useState<string>('/favorites.svg');
 	const [desc, setDesc] = useState<string>('');
 	const [key, setKey] = useState<string>('');
+	const [img, setImg] = useState<string>('/default.jpg');
 
 	function handleFav() {
 		if (fav === '/favorites.svg') {
@@ -28,15 +29,16 @@ export default function Card(product: Product) {
 			const result = first20Words.join(' ');
 			setDesc(result + '...');
 		}
+		product.img !== '' ? setImg(product.img) : setImg('/default.jpg');
 	}, [desc, product]);
 
 	return (
 		<div className={styles.card}>
 			<div className={styles.descriptionContainer}>
-				<Link href={`/userhome/product/detail/${product.id}`}>
+				<Link href={`/userhome/product/details/${product.id}`}>
 					<Image
 						className={styles.itemPic}
-						src={product.img || ''}
+						src={img}
 						alt={product.productName}
 						width={100}
 						height={100}

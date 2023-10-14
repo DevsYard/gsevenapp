@@ -172,8 +172,6 @@ export default function Categories(props: any) {
 
 	useEffect(() => {
 		props.menu ? setMenuPos('styles.opened') : setMenuPos('styles.closed');
-
-		console.log('MENU: ', props.menu, menuPos);
 	}, [props.menu, menuPos]);
 
 	return (
@@ -257,7 +255,12 @@ export default function Categories(props: any) {
 						) : menuMotion === styles.user && isLogged ? (
 							<User />
 						) : (
-							<>Área Logada</>
+							<>
+								<p>Área Logada</p>
+								<p>
+									<a href='/signin'>Logar</a>
+								</p>
+							</>
 						)}
 					</div>
 				</div>
