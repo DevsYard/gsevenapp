@@ -10,6 +10,7 @@ export default function Profile() {
 	const session = useContext(SessionContext);
 	const request = requests();
 
+	const [avatar, setAvatar] = useState('');
 	const [bio, setBio] = useState('');
 	const [birth, setBirth] = useState('');
 	const [name, setName] = useState('');
@@ -21,6 +22,10 @@ export default function Profile() {
 
 	const handleBio = (data: string) => {
 		setBio(data || '');
+	};
+
+	const handleAvatar = (data: string) => {
+		setAvatar(data || '');
 	};
 
 	const handleBirth = (data: string) => {
@@ -42,6 +47,7 @@ export default function Profile() {
 			bio: bio,
 			birth: birth,
 			name: name,
+			avatar: avatar,
 		};
 
 		request.put('/profile', user).then((res) => {
@@ -59,9 +65,10 @@ export default function Profile() {
 		if (!isEditing) {
 			request.post('/profile', session).then((res) => {
 				handleBio(res.data.bio);
+				handleName(res.data.name);
+				handleAvatar(res.data.avatar);
 				const birth = dateConverter(res.data.birth);
 				handleBirth(birth);
-				handleName(res.data.name);
 			});
 		}
 	}, [request, session, isEditing]);
@@ -69,7 +76,7 @@ export default function Profile() {
 	return (
 		<SessionContext.Provider value={session}>
 			<div>
-				<h1>Profile de {session.user}</h1>
+				<h1>Profile de {session.name}</h1>
 				<form
 					action='submit'
 					name='editProfileForm'
@@ -94,6 +101,13 @@ export default function Profile() {
 								onChange={(e) => setBirth(e.target.value)}
 								value={birth}
 							/>
+							<textarea
+								placeholder='Bio'
+								className={styles.input}
+								name='bio'
+								onChange={(e) => setBio(e.target.value)}
+								value={bio}
+							/>
 							<input
 								placeholder='Nome'
 								className={styles.input}
@@ -102,12 +116,13 @@ export default function Profile() {
 								onChange={(e) => setName(e.target.value)}
 								value={name}
 							/>
-							<textarea
-								placeholder='Bio'
+							<input
+								placeholder='Avatar'
 								className={styles.input}
-								name='bio'
-								onChange={(e) => setBio(e.target.value)}
-								value={bio}
+								type='text'
+								name='avatar'
+								onChange={(e) => setAvatar(e.target.value)}
+								value={avatar}
 							/>
 						</>
 					) : (
@@ -133,6 +148,14 @@ export default function Profile() {
 								type='text'
 								name='name'
 								value={name}
+								readOnly
+							/>
+							<input
+								placeholder='Avatar'
+								className={styles.input}
+								type='text'
+								name='avatar'
+								value={avatar}
 								readOnly
 							/>
 						</>

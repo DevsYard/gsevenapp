@@ -7,7 +7,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import Favorites from '../components/Favorites';
 import Principal from '../components/Principal';
 import CreateProduct from './products/create/page';
-import EditProduct from './products/edit/page';
+import EditProduct from './product/edit/[id]/page';
 import Profile from './profile/page';
 import Settings from './settings/page';
 import { ICartItem } from '@/types/products';

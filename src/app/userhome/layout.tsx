@@ -27,7 +27,12 @@ export default function UserHomeLayout({
 	return (
 		<SessionContext.Provider value={session}>
 			<div id={styles.basePage}>
-				<Navbar user={session.user} nome={session.name} menuInfo={menuData} />
+				<Navbar
+					user={session.user}
+					avatar={session.avatar}
+					nome={session.name}
+					menuInfo={menuData}
+				/>
 				<div id={styles.content}>
 					<Categories menu={data} />
 					<main className={styles.mainPage}>{children}</main>

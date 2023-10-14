@@ -9,6 +9,7 @@ interface isLoggedIn {
 	birth?: string;
 	bio?: string;
 	name: string;
+	avatar?: string;
 }
 
 const initialSession: isLoggedIn = {
@@ -16,6 +17,7 @@ const initialSession: isLoggedIn = {
 	userId: '',
 	user: '',
 	name: '',
+	avatar: '',
 	admin: false,
 	token: '',
 };

@@ -1,19 +1,16 @@
-'use client';
-
 import styles from './page.module.sass';
 import SignIn from './signin/page';
-import { useContext, useEffect, useState } from 'react';
-import UserHome from './userhome/page';
-import SessionContext from './contexts/sessionContext';
+import Cookies from './validations/cookies.module';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-	const session = useContext(SessionContext);
+	const cookie = Cookies();
+
+	console.log('Cookie: ', cookie);
 
 	return (
-		<SessionContext.Provider value={session}>
-			<main className={styles.main}>
-				<SignIn />
-			</main>
-		</SessionContext.Provider>
+		<main className={styles.main}>
+			{cookie ? redirect('/userhome') : <SignIn />}
+		</main>
 	);
 }

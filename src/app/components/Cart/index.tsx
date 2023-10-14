@@ -5,17 +5,15 @@ import Link from 'next/link';
 import { string } from 'yup';
 import { useEffect, useState } from 'react';
 import requests from '../../validations/axios.module';
-import { IChartItem } from '@/types/products';
+import { ICartItem } from '@/types/products';
 
 export default function Cart() {
-	const [data, setData] = useState<IChartItem[]>([]);
-
+	const [data, setData] = useState<ICartItem[]>([]);
 	const [total, setTotal] = useState(0);
 
 	useEffect(() => {
 		const request = requests();
 		request.get('/cart/:id').then((response) => setData(response.data));
-
 		const dados = data;
 		for (let i = 0; i < dados.length; i++) {
 			setTotal(total + dados[i].valorTotal);

@@ -49,7 +49,8 @@ export default function ContadorCompras({
 					</button>
 				</div>
 				<h2>R${price.toFixed(2)}</h2>
-				<h6>Preço unitário: R${unidade.toFixed(2)}</h6>
+				<h6>Preço unitário: </h6>
+				<h6>R${unidade.toFixed(2)}</h6>
 			</div>
 		</>
 	);

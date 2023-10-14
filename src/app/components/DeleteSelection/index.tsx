@@ -74,7 +74,7 @@ export default function DeleteSelection() {
 					<>
 						<div className={styles.card} id={deleteStyle.delete}>
 							<div className={styles.descriptionContainer}>
-								<Link href={`/userhome/product/detail/${card._id}`}>
+								<Link href={`/userhome/product/details/${card._id}`}>
 									<Image
 										className={styles.itemPic}
 										src={card.img || ''}
