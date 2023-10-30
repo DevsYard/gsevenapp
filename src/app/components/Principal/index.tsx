@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 interface Product {
 	_id: string;
+	key: string;
 	productName: string;
 	description: string;
 	price: number;

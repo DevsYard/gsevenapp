@@ -1,7 +1,7 @@
 export type ExtendedProduct = Product & ProductKey;
 
 type ProductKey = {
-	key?: string;
+	key: string;
 };
 
 export interface Product {
