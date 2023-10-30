@@ -21,6 +21,7 @@ export default function Details(id: any) {
 		promoPrice: 0,
 		condition: 0,
 		img: '',
+		key: '',
 	});
 	const [fav, setFav] = useState<string>('/favorites.svg');
 	const [disable, setDisable] = useState<boolean>(true);
@@ -60,10 +61,6 @@ export default function Details(id: any) {
 		}
 	}
 
-	function handleFullEdit() {
-		redirect(`/userhome/product/edit/${id['params']['id']}`);
-	}
-
 	function handleSave() {
 		const request = requests();
 		const url = `/product/edit/${id['params']['id']}`;
@@ -98,6 +95,7 @@ export default function Details(id: any) {
 	useEffect(() => {
 		setName(product.productName);
 		setDescription(product.description);
+		console.log('Key: ', product.key);
 	}, [product]);
 
 	return (
@@ -109,7 +107,7 @@ export default function Details(id: any) {
 							<div className={styles.descriptionContainer}>
 								<Image
 									className={styles.itemPic}
-									src={product?.img || ''}
+									src={product?.img || '/default.jpg'}
 									alt={product.productName}
 									width={155}
 									height={155}
@@ -165,7 +163,7 @@ export default function Details(id: any) {
 							<div className={styles.descriptionContainer}>
 								<Image
 									className={styles.itemPic}
-									src={product?.img || ''}
+									src={product.img || '/default.jpg'}
 									alt={product.productName}
 									width={155}
 									height={155}
@@ -183,6 +181,16 @@ export default function Details(id: any) {
 								<div className={styles.boxTexto}>
 									<h3>{product.productName}</h3>
 									<p>{product.description}</p>
+									<br />
+									<p>
+										{product.promo
+											? `Comprando a partir de ${
+													product.condition
+											  }, paga somente R$${product.promoPrice.toFixed(
+													2
+											  )} por unidade.`
+											: ''}
+									</p>
 								</div>
 							</div>
 						</div>

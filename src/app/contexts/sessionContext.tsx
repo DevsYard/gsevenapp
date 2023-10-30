@@ -10,6 +10,7 @@ interface isLoggedIn {
 	bio?: string;
 	name: string;
 	avatar?: string;
+	favorites?: Array<Object>;
 }
 
 const initialSession: isLoggedIn = {
@@ -20,6 +21,7 @@ const initialSession: isLoggedIn = {
 	avatar: '',
 	admin: false,
 	token: '',
+	favorites: [],
 };
 
 const SessionContext = createContext<isLoggedIn>(initialSession);

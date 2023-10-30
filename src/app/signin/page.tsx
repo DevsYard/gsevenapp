@@ -51,6 +51,7 @@ export default function SignIn() {
 					session.userId = res.data.userId;
 					session.name = res.data.name;
 					session.avatar = res.data.avatar;
+					session.favorites = res.data.favorites;
 					redirect('/userhome');
 				}
 			})
@@ -60,6 +61,7 @@ export default function SignIn() {
 					alert(msg);
 				}
 			});
+
 		return;
 	}
 

@@ -71,7 +71,7 @@ export default function CreateProduct() {
 		request
 			.post('/products', product)
 			.then((res) => {
-				console.log(res.data);
+				alert(res.data.msg);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -146,6 +146,7 @@ export default function CreateProduct() {
 						name='condition'
 						onChange={handleCondition}
 					/>
+
 					<input
 						placeholder='URL da imagem'
 						className={style.input}

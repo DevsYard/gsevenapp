@@ -7,4 +7,5 @@ export interface isLoggedIn {
 	birth?: string;
 	bio?: string;
 	avatar?: string;
+	favorites?: [];
 }
