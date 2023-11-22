@@ -10,6 +10,7 @@ import ContadorCompras from '@/app/components/ContadorCompras';
 import SessionContext from '@/app/contexts/sessionContext';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import FavoriteHeart from '@/app/components/FavoriteHeart';
 
 export default function Details(id: any) {
 	const [product, setProduct] = useState<ExtendedProduct>({
@@ -21,11 +22,13 @@ export default function Details(id: any) {
 		promoPrice: 0,
 		condition: 0,
 		img: '',
+		key: '',
 	});
 	const [fav, setFav] = useState<string>('/favorites.svg');
 	const [disable, setDisable] = useState<boolean>(true);
 	const [editBg, setEditBg] = useState<string>('style.editBgOff');
 	const [name, setName] = useState<string>(product.productName);
+	const [favs, setFavs] = useState([]);
 	const [description, setDescription] = useState<string | undefined>(
 		product.description
 	);
@@ -43,10 +46,8 @@ export default function Details(id: any) {
 	function handleFav() {
 		if (fav === '/favorites.svg') {
 			setFav('/heart.svg');
-			// buscar a lista do banco e adicionar o novo
 		} else {
 			setFav('/favorites.svg');
-			// buscar a lista do banco e retirar o atual
 		}
 	}
 
@@ -58,10 +59,6 @@ export default function Details(id: any) {
 			setDisable(true);
 			setEditBg('style.editBgOff');
 		}
-	}
-
-	function handleFullEdit() {
-		redirect(`/userhome/product/edit/${id['params']['id']}`);
 	}
 
 	function handleSave() {
@@ -98,6 +95,7 @@ export default function Details(id: any) {
 	useEffect(() => {
 		setName(product.productName);
 		setDescription(product.description);
+		console.log('Key: ', product.key);
 	}, [product]);
 
 	return (
@@ -109,21 +107,13 @@ export default function Details(id: any) {
 							<div className={styles.descriptionContainer}>
 								<Image
 									className={styles.itemPic}
-									src={product?.img || ''}
+									src={product?.img || '/default.jpg'}
 									alt={product.productName}
 									width={155}
 									height={155}
 									priority
 								/>
-								<div onClick={handleFav} className={styles.heart}>
-									<Image
-										src={fav}
-										alt='Favoritar'
-										width={24}
-										height={24}
-										priority
-									/>
-								</div>
+								<FavoriteHeart produto={product} favs={favs} />
 								<div className={styles.boxTexto}>
 									<input
 										id={editBg}
@@ -165,7 +155,7 @@ export default function Details(id: any) {
 							<div className={styles.descriptionContainer}>
 								<Image
 									className={styles.itemPic}
-									src={product?.img || ''}
+									src={product.img || '/default.jpg'}
 									alt={product.productName}
 									width={155}
 									height={155}
@@ -183,6 +173,16 @@ export default function Details(id: any) {
 								<div className={styles.boxTexto}>
 									<h3>{product.productName}</h3>
 									<p>{product.description}</p>
+									<br />
+									<p>
+										{product.promo
+											? `Comprando a partir de ${
+													product.condition
+											  }, paga somente R$${product.promoPrice.toFixed(
+													2
+											  )} por unidade.`
+											: ''}
+									</p>
 								</div>
 							</div>
 						</div>

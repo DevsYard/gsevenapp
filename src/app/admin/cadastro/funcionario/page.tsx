@@ -18,7 +18,12 @@ export default function Funcionarios() {
 
 	return (
 		<SessionContext.Provider value={session}>
-			<Navbar nome={session.name} user={session.user} menuInfo={menuData} />
+			<Navbar
+				nome={session.name}
+				user={session.user}
+				avatar={session.avatar}
+				menuInfo={menuData}
+			/>
 			<h1>Cadastro de funcionario</h1>
 		</SessionContext.Provider>
 	);

@@ -51,15 +51,17 @@ export default function SignIn() {
 					session.userId = res.data.userId;
 					session.name = res.data.name;
 					session.avatar = res.data.avatar;
+					session.favorites = res.data.favorites;
 					redirect('/userhome');
 				}
 			})
-			.catch((error: any) => {
+			.catch((error) => {
 				if (error) {
 					const msg = error.response.data.message;
 					alert(msg);
 				}
 			});
+
 		return;
 	}
 

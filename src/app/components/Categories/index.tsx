@@ -53,7 +53,7 @@ export default function Categories(props: any) {
 
 	const [menuMotion, setMenuMotion] = useState('styles.lista');
 
-	const { isLogged, admin, user, token, userId, name } =
+	const { isLogged, admin, user, token, userId, name, favorites } =
 		useContext(SessionContext);
 
 	const { isLogged, admin, user, token } = useContext(SessionContext);
@@ -178,7 +178,7 @@ export default function Categories(props: any) {
 
 	return (
 		<SessionContext.Provider
-			value={{ isLogged, admin, user, token, userId, name }}
+			value={{ isLogged, admin, user, token, userId, name, favorites }}
 		>
 			<div id={menuPos} className={styles.categories}>
 				<nav className={styles.optionsMenu}>

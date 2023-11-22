@@ -159,7 +159,17 @@
 
 #menuCategories, #menuFavorites, #menuUser
   padding: 0 2rem
-  
+
+.favorites
+  display: grid
+  gap: 0.5rem
+
+.favCard
+  display: flex
+  justify-content: space-between
+  align-items: center 
+  gap: 0.5rem
+
 .chartContainer
   display: flex
   justify-content: center
@@ -197,6 +207,7 @@
   gap: 1rem
   margin-block: 1rem
   & .itemPic
+    height: fit-content
     align-items: flex-start
     border-radius: 10px
     box-shadow: 2px 2px 15px variables.$primary-shadow

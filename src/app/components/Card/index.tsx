@@ -1,25 +1,27 @@
 import Image from 'next/image';
 import styles from '../../page.module.sass';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Link from 'next/link';
 import { Product } from '@/types/products';
 import ContadorCompras from '../ContadorCompras';
+import SessionContext from '@/app/contexts/sessionContext';
+import FavoriteHeart from '../FavoriteHeart';
+import requests from '@/app/validations/axios.module';
 
 export default function Card(product: Product) {
-	const [fav, setFav] = useState<string>('/favorites.svg');
 	const [desc, setDesc] = useState<string>('');
 	const [key, setKey] = useState<string>('');
 	const [img, setImg] = useState<string>('/default.jpg');
+	const [favs, setFavs] = useState([]);
 
-	function handleFav() {
-		if (fav === '/favorites.svg') {
-			setFav('/heart.svg');
-			// buscar a lista do banco e adicionar o novo
-		} else {
-			setFav('/favorites.svg');
-			// buscar a lista do banco e retirar o atual
-		}
-	}
+	const session = useContext(SessionContext);
+
+	useEffect(() => {
+		const request = requests();
+		request.post('/showfavorites', session).then((res) => {
+			setFavs(res.data.favorites);
+		});
+	}, [session]);
 
 	useEffect(() => {
 		setKey(product.id);
@@ -33,28 +35,37 @@ export default function Card(product: Product) {
 	}, [desc, product]);
 
 	return (
-		<div className={styles.card}>
-			<div className={styles.descriptionContainer}>
-				<Link href={`/userhome/product/details/${product.id}`}>
-					<Image
-						className={styles.itemPic}
-						src={img}
-						alt={product.productName}
-						width={100}
-						height={100}
-						priority
-					/>
-				</Link>
-				<div onClick={() => handleFav()} className={styles.heart}>
-					<Image src={fav} alt='Favoritar' width={24} height={24} priority />
+		<SessionContext.Provider value={session}>
+			<div className={styles.card}>
+				<div className={styles.descriptionContainer}>
+					<Link href={`/userhome/product/details/${product.id}`}>
+						<Image
+							className={styles.itemPic}
+							src={img}
+							alt={product.productName}
+							width={100}
+							height={100}
+							priority
+						/>
+					</Link>
+					<FavoriteHeart produto={product} favs={favs} />
+					<div className={styles.boxTexto}>
+						<h3>{product.productName}</h3>
+						<p>{desc}</p>
+						<p>
+							{product.promo
+								? `Comprando a partir de ${
+										product.condition
+								  }, paga somente R$${product.promoPrice.toFixed(
+										2
+								  )} por unidade.`
+								: ''}
+						</p>
+					</div>
 				</div>
-				<div className={styles.boxTexto}>
-					<h3>{product.productName}</h3>
-					<p>{desc}</p>
-				</div>
+				<ContadorCompras product={{ key, ...product }} />
 			</div>
-			<ContadorCompras product={{ key, ...product }} />
-		</div>
+		</SessionContext.Provider>
 	);
 }
 

@@ -19,7 +19,7 @@ export default function UserHome() {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const renderMainContent = (session: isLoggedIn) => {
+	const renderMainContent = (session: any) => {
 		const url = `${pathname}?${searchParams}`;
 
 		if (url === 'userhome') {
@@ -27,10 +27,10 @@ export default function UserHome() {
 		} else if (url === `/favorites`) {
 			return <Favorites />;
 		} else if (url === `/products/create`) {
-			return <CreateProduct />
+			return <CreateProduct />;
 		} else if (url === `/products/edit`) {
 			return <EditProduct />;
-		} else if (url === `/profile`) {
+		} else if (url === `/userhome/profile`) {
 			return <Profile />;
 		} else if (url === `/settings`) {
 			return <Settings />;

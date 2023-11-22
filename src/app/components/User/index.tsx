@@ -4,11 +4,9 @@ import { useContext, useState } from 'react';
 import styles from '../../page.module.sass';
 import Link from 'next/link';
 import SessionContext from '../../contexts/sessionContext';
-import useUserType from '@/app/hooks/useUserType';
 
 export default function User(props: any) {
 	const session = useContext(SessionContext);
-	const { userType } = useUserType();
 
 	return (
 		<SessionContext.Provider value={session}>
@@ -37,9 +35,6 @@ function Admin() {
 			</li>
 			<li>
 				<Link href='/userhome/products/create'>Adicionar Produto</Link>
-			</li>
-			<li>
-				<Link href='/userhome/products/edit'>Editar Produto</Link>
 			</li>
 			<li>
 				<Link href='/userhome/products/delete'>Apagar Produto</Link>
