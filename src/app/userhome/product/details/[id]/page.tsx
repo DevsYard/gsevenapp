@@ -95,6 +95,7 @@ export default function Details(id: any) {
 	useEffect(() => {
 		setName(product.productName);
 		setDescription(product.description);
+		console.log('Key: ', product.key);
 	}, [product]);
 
 	return (
