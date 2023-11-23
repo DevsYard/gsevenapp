@@ -31,5 +31,6 @@ export default function FavCard(props: any) {
 				<FavoriteHeart produto={props.selectedProduct} favs={favs} />
 			</div>
 		</SessionContext.Provider>
+
 	);
 }
